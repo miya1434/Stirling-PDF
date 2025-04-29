@@ -1,12 +1,21 @@
 package stirling.software.SPDF.service;
 
 import java.io.File;
-import java.lang.management.*;
+import java.lang.management.GarbageCollectorMXBean;
+import java.lang.management.ManagementFactory;
+import java.lang.management.MemoryMXBean;
+import java.lang.management.OperatingSystemMXBean;
+import java.lang.management.RuntimeMXBean;
+import java.lang.management.ThreadMXBean;
 import java.net.InetAddress;
 import java.net.NetworkInterface;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.*;
+import java.util.Enumeration;
+import java.util.HashMap;
+import java.util.Locale;
+import java.util.Map;
+import java.util.TimeZone;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,8 +25,8 @@ import org.springframework.stereotype.Service;
 
 import com.posthog.java.PostHog;
 
-import stirling.software.SPDF.controller.api.pipeline.UserServiceInterface;
 import stirling.software.common.model.ApplicationProperties;
+import stirling.software.common.service.UserServiceInterface;
 
 @Service
 public class PostHogService {
