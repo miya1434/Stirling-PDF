@@ -11,7 +11,6 @@ import java.util.Map;
 import java.util.Properties;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
@@ -27,10 +26,11 @@ import jakarta.annotation.PreDestroy;
 import lombok.extern.slf4j.Slf4j;
 
 import stirling.software.SPDF.UI.WebBrowser;
-import stirling.software.SPDF.config.ConfigInitializer;
-import stirling.software.SPDF.utils.UrlUtils;
+import stirling.software.common.configuration.AppConfig;
+import stirling.software.common.configuration.ConfigInitializer;
 import stirling.software.common.configuration.InstallationPathConfig;
 import stirling.software.common.model.ApplicationProperties;
+import stirling.software.common.util.UrlUtils;
 
 @Slf4j
 @EnableScheduling
@@ -46,20 +46,17 @@ public class SPDFApplication {
     private static String baseUrlStatic;
     private static String contextPathStatic;
 
+    private final AppConfig appConfig;
     private final Environment env;
     private final ApplicationProperties applicationProperties;
     private final WebBrowser webBrowser;
 
-    @Value("${baseUrl:http://localhost}")
-    private String baseUrl;
-
-    @Value("${server.servlet.context-path:/}")
-    private String contextPath;
-
     public SPDFApplication(
+            AppConfig appConfig,
             Environment env,
             ApplicationProperties applicationProperties,
             @Autowired(required = false) WebBrowser webBrowser) {
+        this.appConfig = appConfig;
         this.env = env;
         this.applicationProperties = applicationProperties;
         this.webBrowser = webBrowser;
@@ -148,9 +145,12 @@ public class SPDFApplication {
 
     @PostConstruct
     public void init() {
-        baseUrlStatic = this.baseUrl;
-        contextPathStatic = this.contextPath;
+        String baseUrl = appConfig.getBaseUrl();
+        String contextPath = appConfig.getContextPath();
+        baseUrlStatic = baseUrl;
+        contextPathStatic = contextPath;
         String url = baseUrl + ":" + getStaticPort() + contextPath;
+
         if (webBrowser != null
                 && Boolean.parseBoolean(System.getProperty("STIRLING_PDF_DESKTOP_UI", "false"))) {
             webBrowser.initWebUI(url);
@@ -161,6 +161,7 @@ public class SPDFApplication {
                 try {
                     String os = System.getProperty("os.name").toLowerCase();
                     Runtime rt = Runtime.getRuntime();
+
                     if (os.contains("win")) {
                         // For Windows
                         SystemCommand.runCommand(rt, "rundll32 url.dll,FileProtocolHandler " + url);
@@ -175,17 +176,6 @@ public class SPDFApplication {
             }
         }
         log.info("Running configs {}", applicationProperties.toString());
-    }
-
-    @Value("${server.port:8080}")
-    public void setServerPort(String port) {
-        if ("auto".equalsIgnoreCase(port)) {
-            // Use Spring Boot's automatic port assignment (server.port=0)
-            SPDFApplication.serverPortStatic =
-                    "0"; // This will let Spring Boot assign an available port
-        } else {
-            SPDFApplication.serverPortStatic = port;
-        }
     }
 
     public static void setServerPortStatic(String port) {

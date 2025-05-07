@@ -16,8 +16,8 @@ import org.springframework.stereotype.Service;
 
 import com.posthog.java.PostHog;
 
-import stirling.software.SPDF.controller.api.pipeline.UserServiceInterface;
 import stirling.software.common.model.ApplicationProperties;
+import stirling.software.enterprise.security.service.UserServiceEnterpriseInterface;
 
 @Service
 public class PostHogService {
@@ -25,7 +25,7 @@ public class PostHogService {
     private final String uniqueId;
     private final String appVersion;
     private final ApplicationProperties applicationProperties;
-    private final UserServiceInterface userService;
+    private final UserServiceEnterpriseInterface userService;
     private final Environment env;
     private boolean configDirMounted;
 
@@ -35,7 +35,7 @@ public class PostHogService {
             @Qualifier("configDirMounted") boolean configDirMounted,
             @Qualifier("appVersion") String appVersion,
             ApplicationProperties applicationProperties,
-            @Autowired(required = false) UserServiceInterface userService,
+            @Autowired(required = false) UserServiceEnterpriseInterface userService,
             Environment env) {
         this.postHog = postHog;
         this.uniqueId = uuid;

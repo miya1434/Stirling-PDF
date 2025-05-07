@@ -24,7 +24,8 @@ import lombok.extern.slf4j.Slf4j;
 
 import stirling.software.SPDF.SPDFApplication;
 import stirling.software.SPDF.model.ApiEndpoint;
-import stirling.software.SPDF.model.Role;
+import stirling.software.enterprise.security.model.Role;
+import stirling.software.enterprise.security.service.UserServiceEnterpriseInterface;
 
 @Service
 @Slf4j
@@ -33,13 +34,13 @@ public class ApiDocService {
     private final Map<String, ApiEndpoint> apiDocumentation = new HashMap<>();
 
     private final ServletContext servletContext;
-    private final UserServiceInterface userService;
+    private final UserServiceEnterpriseInterface userService;
     Map<String, List<String>> outputToFileTypes = new HashMap<>();
     JsonNode apiDocsJsonRootNode;
 
     public ApiDocService(
             ServletContext servletContext,
-            @Autowired(required = false) UserServiceInterface userService) {
+            @Autowired(required = false) UserServiceEnterpriseInterface userService) {
         this.servletContext = servletContext;
         this.userService = userService;
     }

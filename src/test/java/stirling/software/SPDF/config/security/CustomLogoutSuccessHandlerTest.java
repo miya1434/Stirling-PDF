@@ -17,6 +17,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import stirling.software.common.model.ApplicationProperties;
+import stirling.software.enterprise.security.CustomLogoutSuccessHandler;
 
 @ExtendWith(MockitoExtension.class)
 class CustomLogoutSuccessHandlerTest {

@@ -31,7 +31,7 @@ import stirling.software.SPDF.model.PipelineOperation;
 import stirling.software.SPDF.model.PipelineResult;
 import stirling.software.SPDF.model.api.HandleDataRequest;
 import stirling.software.SPDF.service.PostHogService;
-import stirling.software.SPDF.utils.WebResponseUtils;
+import stirling.software.common.util.WebResponseUtils;
 
 @RestController
 @RequestMapping("/api/v1/pipeline")

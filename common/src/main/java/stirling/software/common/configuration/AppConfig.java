@@ -1,5 +1,7 @@
 package stirling.software.common.configuration;
 
+import io.github.pixee.security.SystemCommand;
+import jakarta.annotation.PostConstruct;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -9,6 +11,7 @@ import java.util.Locale;
 import java.util.Properties;
 import java.util.function.Predicate;
 
+import lombok.Getter;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
@@ -35,6 +38,18 @@ public class AppConfig {
     private final ApplicationProperties applicationProperties;
 
     private final Environment env;
+
+    @Getter
+    @Value("${baseUrl:http://localhost}")
+    private String baseUrl;
+
+    @Getter
+    @Value("${server.servlet.context-path:/}")
+    private String contextPath;
+
+    @Getter
+    @Value("${server.port:8080}")
+    private String serverPort;
 
     @Bean
     @ConditionalOnProperty(name = "system.customHTMLFiles", havingValue = "true")

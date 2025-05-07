@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.jdbc.DataSourceBuilder;
+import org.springframework.boot.jdbc.DatabaseDriver;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import stirling.software.common.model.ApplicationProperties;
@@ -18,9 +19,7 @@ public class DatabaseConfig {
     public final String DATASOURCE_DEFAULT_URL;
 
     public static final String DATASOURCE_URL_TEMPLATE = "jdbc:%s://%s:%4d/%s";
-    public static final String DEFAULT_DRIVER = "org.h2.Driver";
     public static final String DEFAULT_USERNAME = "sa";
-    public static final String POSTGRES_DRIVER = "org.postgresql.Driver";
 
     private final ApplicationProperties.Datasource datasource;
     private final boolean runningProOrHigher;
@@ -62,7 +61,7 @@ public class DatabaseConfig {
 
         if (!datasource.getCustomDatabaseUrl().isBlank()) {
             if (datasource.getCustomDatabaseUrl().contains("postgresql")) {
-                dataSourceBuilder.driverClassName(POSTGRES_DRIVER);
+                dataSourceBuilder.driverClassName(DatabaseDriver.POSTGRESQL.getDriverClassName());
             }
 
             dataSourceBuilder.url(datasource.getCustomDatabaseUrl());
@@ -84,8 +83,9 @@ public class DatabaseConfig {
     private DataSource useDefaultDataSource(DataSourceBuilder<?> dataSourceBuilder) {
         log.info("Using default H2 database");
 
-        dataSourceBuilder.url(DATASOURCE_DEFAULT_URL);
-        dataSourceBuilder.username(DEFAULT_USERNAME);
+        dataSourceBuilder.url(DATASOURCE_DEFAULT_URL)
+            .driverClassName(DatabaseDriver.H2.getDriverClassName())
+            .username(DEFAULT_USERNAME);
 
         return dataSourceBuilder.build();
     }
@@ -119,11 +119,11 @@ public class DatabaseConfig {
             switch (driver) {
                 case H2 -> {
                     log.debug("H2 driver selected");
-                    return DEFAULT_DRIVER;
+                    return DatabaseDriver.H2.getDriverClassName();
                 }
                 case POSTGRESQL -> {
                     log.debug("Postgres driver selected");
-                    return POSTGRES_DRIVER;
+                    return DatabaseDriver.POSTGRESQL.getDriverClassName();
                 }
                 default -> {
                     log.warn("{} driver selected", driverName);

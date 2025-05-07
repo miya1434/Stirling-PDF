@@ -24,12 +24,12 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 
 import lombok.extern.slf4j.Slf4j;
 
-import stirling.software.SPDF.config.RuntimePathConfig;
-import stirling.software.SPDF.controller.api.pipeline.UserServiceInterface;
 import stirling.software.SPDF.model.SignatureFile;
 import stirling.software.SPDF.service.SignatureService;
-import stirling.software.SPDF.utils.GeneralUtils;
 import stirling.software.common.configuration.InstallationPathConfig;
+import stirling.software.common.configuration.RuntimePathConfig;
+import stirling.software.common.util.GeneralUtils;
+import stirling.software.enterprise.security.service.UserServiceEnterpriseInterface;
 
 @Controller
 @Tag(name = "General", description = "General APIs")
@@ -37,13 +37,13 @@ import stirling.software.common.configuration.InstallationPathConfig;
 public class GeneralWebController {
 
     private final SignatureService signatureService;
-    private final UserServiceInterface userService;
+    private final UserServiceEnterpriseInterface userService;
     private final ResourceLoader resourceLoader;
     private final RuntimePathConfig runtimePathConfig;
 
     public GeneralWebController(
             SignatureService signatureService,
-            @Autowired(required = false) UserServiceInterface userService,
+            @Autowired(required = false) UserServiceEnterpriseInterface userService,
             ResourceLoader resourceLoader,
             RuntimePathConfig runtimePathConfig) {
         this.signatureService = signatureService;
