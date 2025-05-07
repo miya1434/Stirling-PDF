@@ -1,5 +1,6 @@
 package stirling.software.enterprise.configuration;
 
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.Ordered;
@@ -30,6 +31,7 @@ public class EEAppConfig {
     }
 
     @Bean(name = "runningProOrHigher")
+    @Qualifier("runningProOrHigher")
     public boolean runningProOrHigher() {
         return licenseKeyChecker.getPremiumLicenseEnabledResult() != License.NORMAL;
     }
