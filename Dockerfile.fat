@@ -13,8 +13,8 @@ WORKDIR /app
 # Copy the entire project to the working directory
 COPY . .
 
-# Build the application with DOCKER_ENABLE_SECURITY=false
-RUN DOCKER_ENABLE_SECURITY=true \
+# Build the application with ADDITIONAL_FEATURES=false
+RUN ADDITIONAL_FEATURES=true \
     STIRLING_PDF_DESKTOP_UI=false \
     ./gradlew clean build -x spotlessApply -x spotlessCheck -x test -x sonarqube
 
@@ -30,7 +30,7 @@ COPY --from=build /app/build/libs/*.jar app.jar
 ARG VERSION_TAG
 
 # Set Environment Variables
-ENV DOCKER_ENABLE_SECURITY=false \
+ENV ADDITIONAL_FEATURES=false \
     VERSION_TAG=$VERSION_TAG \
     JAVA_BASE_OPTS="-XX:+UnlockExperimentalVMOptions -XX:MaxRAMPercentage=75 -XX:InitiatingHeapOccupancyPercent=20 -XX:+G1PeriodicGCInvokesConcurrent -XX:G1PeriodicGCInterval=10000 -XX:+UseStringDeduplication -XX:G1PeriodicGCSystemLoadThreshold=70" \
     JAVA_CUSTOM_OPTS="" \

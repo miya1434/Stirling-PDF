@@ -55,7 +55,7 @@ Stirling-PDF uses Lombok to reduce boilerplate code. Some IDEs, like Eclipse, do
 Visit the [Lombok website](https://projectlombok.org/setup/) for installation instructions specific to your IDE.
 
 5. Add environment variable
-For local testing, you should generally be testing the full 'Security' version of Stirling-PDF. To do this, you must add the environment flag DOCKER_ENABLE_SECURITY=true to your system and/or IDE build/run step.
+For local testing, you should generally be testing the full 'Security' version of Stirling-PDF. To do this, you must add the environment flag ADDITIONAL_FEATURES=true to your system and/or IDE build/run step.
 
 ## 4. Project Structure
 
@@ -76,7 +76,7 @@ Stirling-PDF/
 │   │   ├── java/
 │   │   │   └── stirling/
 │   │   │       └── software/
-│   │   │           └── SPDF/
+│   │   │           └── spdf/
 │   │   │               ├── config/
 │   │   │               ├── controller/
 │   │   │               ├── model/
@@ -93,7 +93,7 @@ Stirling-PDF/
 │       └── java/
 │           └── stirling/
 │               └── software/
-│                   └── SPDF/
+│                   └── spdf/
 ├── build.gradle           # Gradle build configuration
 ├── Dockerfile             # Main Dockerfile
 ├── Dockerfile.ultra-lite  # Dockerfile for ultra-lite version
@@ -141,7 +141,7 @@ services:
       - /stirling/latest/config:/configs:rw
       - /stirling/latest/logs:/logs:rw
     environment:
-      DOCKER_ENABLE_SECURITY: "true"
+      ADDITIONAL_FEATURES: "true"
       SECURITY_ENABLELOGIN: "true"
       PUID: 1002
       PGID: 1002
@@ -170,7 +170,7 @@ Stirling-PDF uses different Docker images for various configurations. The build 
 1. Set the security environment variable:
 
    ```bash
-   export DOCKER_ENABLE_SECURITY=false  # or true for security-enabled builds
+   export ADDITIONAL_FEATURES=false  # or true for security-enabled builds
    ```
 
 2. Build the project with Gradle:
@@ -196,7 +196,7 @@ Stirling-PDF uses different Docker images for various configurations. The build 
    For the fat version (with security enabled):
 
    ```bash
-   export DOCKER_ENABLE_SECURITY=true
+   export ADDITIONAL_FEATURES=true
    docker build --no-cache --pull --build-arg VERSION_TAG=alpha -t stirlingtools/stirling-pdf:latest-fat -f ./Dockerfile.fat .
    ```
 
@@ -384,12 +384,12 @@ This would generate n entries of tr for each person in exampleData
 ### Adding a New Feature to the Backend (API)
 
 1. **Create a New Controller:**
-   - Create a new Java class in the `src/main/java/stirling/software/SPDF/controller/api` directory.
+   - Create a new Java class in the `src/main/java/stirling/software/spdf/controller/api` directory.
    - Annotate the class with `@RestController` and `@RequestMapping` to define the API endpoint.
    - Ensure to add API documentation annotations like `@Tag(name = "General", description = "General APIs")` and `@Operation(summary = "Crops a PDF document", description = "This operation takes an input PDF file and crops it according to the given coordinates. Input:PDF Output:PDF Type:SISO")`.
 
    ```java
-   package stirling.software.SPDF.controller.api;
+   package stirling.software.spdf.controller.api;
 
    import org.springframework.web.bind.annotation.GetMapping;
    import org.springframework.web.bind.annotation.RequestMapping;
@@ -411,11 +411,11 @@ This would generate n entries of tr for each person in exampleData
    ```
 
 2. **Define the Service Layer:** (Not required but often useful)
-   - Create a new service class in the `src/main/java/stirling/software/SPDF/service` directory.
+   - Create a new service class in the `src/main/java/stirling/software/spdf/service` directory.
    - Implement the business logic for the new feature.
 
    ```java
-   package stirling.software.SPDF.service;
+   package stirling.software.spdf.service;
 
    import org.springframework.stereotype.Service;
 
@@ -434,13 +434,13 @@ This would generate n entries of tr for each person in exampleData
 - Autowire the service class in the controller and use it to handle the API request.
 
   ```java
-  package stirling.software.SPDF.controller.api;
+  package stirling.software.spdf.controller.api;
 
   import org.springframework.beans.factory.annotation.Autowired;
   import org.springframework.web.bind.annotation.GetMapping;
   import org.springframework.web.bind.annotation.RequestMapping;
   import org.springframework.web.bind.annotation.RestController;
-  import stirling.software.SPDF.service.NewFeatureService;
+  import stirling.software.spdf.service.NewFeatureService;
   import io.swagger.v3.oas.annotations.Operation;
   import io.swagger.v3.oas.annotations.tags.Tag;
 
@@ -507,18 +507,18 @@ This would generate n entries of tr for each person in exampleData
    ```
 
 2. **Create a New Controller for the UI:**
-   - Create a new Java class in the `src/main/java/stirling/software/SPDF/controller/ui` directory.
+   - Create a new Java class in the `src/main/java/stirling/software/spdf/controller/ui` directory.
    - Annotate the class with `@Controller` and `@RequestMapping` to define the UI endpoint.
 
    ```java
-   package stirling.software.SPDF.controller.ui;
+   package stirling.software.spdf.controller.ui;
 
    import org.springframework.beans.factory.annotation.Autowired;
    import org.springframework.stereotype.Controller;
    import org.springframework.ui.Model;
    import org.springframework.web.bind.annotation.GetMapping;
    import org.springframework.web.bind.annotation.RequestMapping;
-   import stirling.software.SPDF.service.NewFeatureService;
+   import stirling.software.spdf.service.NewFeatureService;
 
    @Controller
    @RequestMapping("/new-feature")
