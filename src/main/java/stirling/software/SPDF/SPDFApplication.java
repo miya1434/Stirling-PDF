@@ -38,8 +38,8 @@ import stirling.software.common.util.UrlUtils;
         scanBasePackages = {
             "stirling.software.SPDF",
             "stirling.software.common",
-            "stirling.software.enterprise",
-            "stirling.software.enterprise.configuration"
+            "stirling.software.proprietary",
+            "stirling.software.proprietary.configuration"
         },
         exclude = {
             DataSourceAutoConfiguration.class,

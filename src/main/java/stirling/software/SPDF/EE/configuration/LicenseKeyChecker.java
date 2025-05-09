@@ -12,7 +12,7 @@ import lombok.extern.slf4j.Slf4j;
 
 import stirling.software.SPDF.EE.configuration.KeygenLicenseVerifier.License;
 import stirling.software.common.model.ApplicationProperties;
-import stirling.software.common.util.GeneralUtils;
+import stirling.software.common.util.GeneralUtil;
 
 @Slf4j
 @Component
@@ -88,7 +88,7 @@ public class LicenseKeyChecker {
 
     public void updateLicenseKey(String newKey) throws IOException {
         applicationProperties.getPremium().setKey(newKey);
-        GeneralUtils.saveKeyToSettings("EnterpriseEdition.key", newKey);
+        GeneralUtil.saveKeyToSettings("EnterpriseEdition.key", newKey);
         checkLicense();
     }
 

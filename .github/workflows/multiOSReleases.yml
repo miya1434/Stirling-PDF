@@ -75,7 +75,7 @@ jobs:
       - name: Generate jar (With Security=${{ matrix.enable_security }})
         run: ./gradlew clean createExe
         env:
-          DOCKER_ENABLE_SECURITY: ${{ matrix.enable_security }}
+          ADDITIONAL_FEATURES: ${{ matrix.enable_security }}
           STIRLING_PDF_DESKTOP_UI: false
 
       - name: Rename binaries
@@ -171,7 +171,7 @@ jobs:
       - name: Build Installer
         run: ./gradlew build jpackage -x test --info
         env:
-          DOCKER_ENABLE_SECURITY: false
+          ADDITIONAL_FEATURES: false
           STIRLING_PDF_DESKTOP_UI: true
           BROWSER_OPEN: true
 

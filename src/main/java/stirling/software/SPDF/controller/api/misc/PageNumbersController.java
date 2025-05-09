@@ -26,7 +26,7 @@ import lombok.RequiredArgsConstructor;
 
 import stirling.software.SPDF.model.api.misc.AddPageNumbersRequest;
 import stirling.software.common.service.CustomPDFDocumentFactory;
-import stirling.software.common.util.GeneralUtils;
+import stirling.software.common.util.GeneralUtil;
 import stirling.software.common.util.WebResponseUtils;
 
 @RestController
@@ -83,7 +83,7 @@ public class PageNumbersController {
             customText = "{n}";
         }
         List<Integer> pagesToNumberList =
-                GeneralUtils.parsePageList(pagesToNumber.split(","), document.getNumberOfPages());
+                GeneralUtil.parsePageList(pagesToNumber.split(","), document.getNumberOfPages());
 
         for (int i : pagesToNumberList) {
             PDPage page = document.getPage(i);

@@ -4,7 +4,7 @@ FROM alpine:3.21.3@sha256:a8560b36e8b8210634f77d9f7f9efd7ffa463e380b75e2e74aff45
 ARG VERSION_TAG
 
 # Set Environment Variables
-ENV DOCKER_ENABLE_SECURITY=false \
+ENV ADDITIONAL_FEATURES=false \
     HOME=/home/stirlingpdfuser \
     VERSION_TAG=$VERSION_TAG \
     JAVA_BASE_OPTS="-XX:+UnlockExperimentalVMOptions -XX:MaxRAMPercentage=75 -XX:InitiatingHeapOccupancyPercent=20 -XX:+G1PeriodicGCInvokesConcurrent -XX:G1PeriodicGCInterval=10000 -XX:+UseStringDeduplication -XX:G1PeriodicGCSystemLoadThreshold=70" \

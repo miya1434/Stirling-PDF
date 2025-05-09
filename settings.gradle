@@ -4,8 +4,8 @@ plugins {
 }
 rootProject.name = 'Stirling-PDF'
 
-include 'common', 'enterprise'
+include 'common'
 
-//if (System.getenv('DOCKER_ENABLE_SECURITY') == 'true') {
-//    include 'enterprise'
-//}
+if (System.getenv('ADDITIONAL_FEATURES') == 'true') {
+    include 'proprietary'
+}
