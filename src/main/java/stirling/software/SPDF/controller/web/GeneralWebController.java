@@ -28,8 +28,8 @@ import stirling.software.SPDF.model.SignatureFile;
 import stirling.software.SPDF.service.SignatureService;
 import stirling.software.common.configuration.InstallationPathConfig;
 import stirling.software.common.configuration.RuntimePathConfig;
+import stirling.software.common.service.UserServiceInterface;
 import stirling.software.common.util.GeneralUtils;
-import stirling.software.enterprise.security.service.UserServiceEnterpriseInterface;
 
 @Controller
 @Tag(name = "General", description = "General APIs")
@@ -37,13 +37,13 @@ import stirling.software.enterprise.security.service.UserServiceEnterpriseInterf
 public class GeneralWebController {
 
     private final SignatureService signatureService;
-    private final UserServiceEnterpriseInterface userService;
+    private final UserServiceInterface userService;
     private final ResourceLoader resourceLoader;
     private final RuntimePathConfig runtimePathConfig;
 
     public GeneralWebController(
             SignatureService signatureService,
-            @Autowired(required = false) UserServiceEnterpriseInterface userService,
+            @Autowired(required = false) UserServiceInterface userService,
             ResourceLoader resourceLoader,
             RuntimePathConfig runtimePathConfig) {
         this.signatureService = signatureService;

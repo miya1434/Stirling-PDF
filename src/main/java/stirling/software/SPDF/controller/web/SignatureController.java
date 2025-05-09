@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import stirling.software.SPDF.service.SignatureService;
-import stirling.software.enterprise.security.service.UserServiceEnterpriseInterface;
+import stirling.software.common.service.UserServiceInterface;
 
 @Controller
 @RequestMapping("/api/v1/general")
@@ -20,11 +20,11 @@ public class SignatureController {
 
     private final SignatureService signatureService;
 
-    private final UserServiceEnterpriseInterface userService;
+    private final UserServiceInterface userService;
 
     public SignatureController(
             SignatureService signatureService,
-            @Autowired(required = false) UserServiceEnterpriseInterface userService) {
+            @Autowired(required = false) UserServiceInterface userService) {
         this.signatureService = signatureService;
         this.userService = userService;
     }

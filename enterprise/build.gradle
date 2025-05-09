@@ -21,6 +21,46 @@ ext {
     lombokVersion = "1.18.38"
 }
 
+sourceSets {
+    main {
+        java {
+            if (System.getenv("DOCKER_ENABLE_SECURITY") == "false") {
+                exclude 'stirling/software/enterprise/security/UserAuthenticationFilter.java'
+                exclude 'stirling/software/enterprise/security/UserBasedRateLimitingFilter.java'
+                exclude 'stirling/software/enterprise/security/CustomAuthenticationSuccessHandler.java'
+                exclude 'stirling/software/enterprise/security/CustomLogoutSuccessHandler.java'
+                exclude 'stirling/software/enterprise/security/FirstLoginFilter.java'
+                exclude 'stirling/software/enterprise/security/IPRateLimitingFilter.java'
+                exclude 'stirling/software/enterprise/security/RateLimitResetScheduler.java'
+                exclude 'stirling/software/enterprise/security/CustomAuthenticationFailureHandler.java'
+                exclude 'stirling/software/enterprise/security/InitialSecuritySetup.java'
+                exclude 'stirling/software/enterprise/security/configuration/**'
+                exclude 'stirling/software/enterprise/security/controller/**'
+                exclude 'stirling/software/enterprise/security/database/**'
+                exclude 'stirling/software/enterprise/security/oauth2/**'
+                exclude 'stirling/software/enterprise/security/saml2/**'
+                exclude 'stirling/software/enterprise/security/service/**'
+                exclude 'stirling/software/enterprise/security/session/**'
+                exclude 'stirling/software/enterprise/security/model/ApiKeyAuthenticationToken.java'
+                exclude 'stirling/software/enterprise/security/model/AttemptCounter.java'
+                exclude 'stirling/software/enterprise/security/model/Authority.java'
+                exclude 'stirling/software/enterprise/security/model/BackupNotFoundException.java'
+                exclude 'stirling/software/enterprise/security/model/PersistentLogin.java'
+                exclude 'stirling/software/enterprise/security/model/SessionEntity.java'
+                exclude 'stirling/software/enterprise/security/model/User.java'
+            }
+        }
+
+        test {
+            java {
+                if (System.getenv("DOCKER_ENABLE_SECURITY") == "false") {
+                    exclude 'stirling/software/enterprise/security/**'
+                }
+            }
+        }
+    }
+}
+
 configurations.all {
     exclude group: 'commons-logging', module: 'commons-logging'
     exclude group: "org.springframework.boot", module: "spring-boot-starter-tomcat"
@@ -38,8 +78,8 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-jetty'
     implementation 'io.swagger.core.v3:swagger-core-jakarta:2.2.30'
     implementation 'org.springframework:spring-webmvc:6.2.6'
-//    implementation 'jakarta.servlet:jakarta.servlet-api:6.0.0' todo: testing
     implementation 'com.posthog.java:posthog:1.2.0'
+
     // https://mvnrepository.com/artifact/com.bucket4j/bucket4j_jdk17
     implementation 'com.bucket4j:bucket4j_jdk17-core:8.14.0'
     implementation 'io.github.pixee:java-security-toolkit:1.2.1'
@@ -76,6 +116,8 @@ dependencies {
 
     testImplementation platform('org.junit:junit-bom:5.10.0')
     testImplementation 'org.junit.jupiter:junit-jupiter'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+//    testRuntimeOnly 'org.mockito:mockito-inline:5.2.0'
 }
 
 test {

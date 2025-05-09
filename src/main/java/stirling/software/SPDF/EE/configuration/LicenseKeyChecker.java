@@ -1,4 +1,4 @@
-package stirling.software.enterprise.configuration;
+package stirling.software.SPDF.EE.configuration;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -10,12 +10,12 @@ import org.springframework.stereotype.Component;
 
 import lombok.extern.slf4j.Slf4j;
 
-import stirling.software.enterprise.configuration.KeygenLicenseVerifier.License;
-import stirling.software.common.util.GeneralUtils;
+import stirling.software.SPDF.EE.configuration.KeygenLicenseVerifier.License;
 import stirling.software.common.model.ApplicationProperties;
+import stirling.software.common.util.GeneralUtils;
 
-@Component
 @Slf4j
+@Component
 public class LicenseKeyChecker {
 
     private static final String FILE_PREFIX = "file:";

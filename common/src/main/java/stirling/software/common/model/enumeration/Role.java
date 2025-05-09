@@ -1,4 +1,4 @@
-package stirling.software.enterprise.security.model;
+package stirling.software.common.model.enumeration;
 
 import java.util.LinkedHashMap;
 import java.util.Map;

@@ -15,6 +15,7 @@ import org.springframework.security.core.session.SessionRegistry;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Component;
+import stirling.software.enterprise.security.database.repository.SessionRepository;
 import stirling.software.enterprise.security.model.SessionEntity;
 import stirling.software.enterprise.security.saml2.CustomSaml2AuthenticatedPrincipal;
 

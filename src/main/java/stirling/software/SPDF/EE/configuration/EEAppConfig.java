@@ -1,4 +1,6 @@
-package stirling.software.enterprise.configuration;
+package stirling.software.SPDF.EE.configuration;
+
+import static stirling.software.SPDF.EE.configuration.KeygenLicenseVerifier.License;
 
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
@@ -6,15 +8,11 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
 
-import lombok.extern.slf4j.Slf4j;
-
 import stirling.software.common.model.ApplicationProperties;
 import stirling.software.common.model.ApplicationProperties.EnterpriseEdition;
 import stirling.software.common.model.ApplicationProperties.Premium;
 import stirling.software.common.model.ApplicationProperties.Premium.ProFeatures.GoogleDrive;
-import static stirling.software.enterprise.configuration.KeygenLicenseVerifier.*;
 
-@Slf4j
 @Configuration
 @Order(Ordered.HIGHEST_PRECEDENCE)
 public class EEAppConfig {

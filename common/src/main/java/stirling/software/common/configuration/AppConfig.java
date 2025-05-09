@@ -35,6 +35,7 @@ import stirling.software.common.model.ApplicationProperties;
 @RequiredArgsConstructor
 public class AppConfig {
 
+    private final Environment env;
     private final ApplicationProperties applicationProperties;
 
     private final Environment env;
@@ -62,6 +63,11 @@ public class AppConfig {
     @Bean(name = "loginEnabled")
     public boolean loginEnabled() {
         return applicationProperties.getSecurity().getEnableLogin();
+    }
+
+    @Bean
+    public boolean activeSecurity() {
+        return env.getProperty("DOCKER_SECURITY_ENABLED", Boolean.class, true);
     }
 
     @Bean(name = "appName")
@@ -147,10 +153,10 @@ public class AppConfig {
         }
     }
 
-    @ConditionalOnMissingClass("stirling.software.SPDF.config.security.SecurityConfiguration")
-    @Bean(name = "activeSecurity")
+    @Bean(name = "missingActiveSecurity")
+    @ConditionalOnMissingClass("stirling.software.enterprise.security.SecurityConfiguration")
     public boolean missingActiveSecurity() {
-        return false;
+        return true;
     }
 
     @Bean(name = "directoryFilter")

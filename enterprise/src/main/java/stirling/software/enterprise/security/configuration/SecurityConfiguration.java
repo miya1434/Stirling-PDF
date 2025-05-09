@@ -1,4 +1,4 @@
-package stirling.software.enterprise.security;
+package stirling.software.enterprise.security.configuration;
 
 import java.util.Optional;
 import lombok.extern.slf4j.Slf4j;
@@ -29,6 +29,12 @@ import org.springframework.security.web.savedrequest.NullRequestCache;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import stirling.software.common.configuration.AppConfig;
 import stirling.software.common.model.ApplicationProperties;
+import stirling.software.enterprise.security.CustomAuthenticationFailureHandler;
+import stirling.software.enterprise.security.CustomAuthenticationSuccessHandler;
+import stirling.software.enterprise.security.CustomLogoutSuccessHandler;
+import stirling.software.enterprise.security.filter.FirstLoginFilter;
+import stirling.software.enterprise.security.filter.IPRateLimitingFilter;
+import stirling.software.enterprise.security.filter.UserAuthenticationFilter;
 import stirling.software.enterprise.security.database.repository.JPATokenRepositoryImpl;
 import stirling.software.enterprise.security.database.repository.PersistentLoginRepository;
 import stirling.software.enterprise.security.model.User;
@@ -311,10 +317,5 @@ public class SecurityConfiguration {
     @Bean
     public PersistentTokenRepository persistentTokenRepository() {
         return new JPATokenRepositoryImpl(persistentLoginRepository);
-    }
-
-    @Bean
-    public boolean activeSecurity() {
-        return true;
     }
 }

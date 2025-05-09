@@ -1,4 +1,4 @@
-package stirling.software.enterprise.security.session;
+package stirling.software.enterprise.security.database.repository;
 
 import jakarta.transaction.Transactional;
 import java.util.Date;

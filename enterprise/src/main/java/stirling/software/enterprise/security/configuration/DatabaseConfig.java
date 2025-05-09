@@ -1,19 +1,24 @@
-package stirling.software.common.configuration;
+package stirling.software.enterprise.security.configuration;
 
 import javax.sql.DataSource;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.boot.jdbc.DatabaseDriver;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import stirling.software.common.configuration.InstallationPathConfig;
 import stirling.software.common.model.ApplicationProperties;
 import stirling.software.common.model.exception.UnsupportedProviderException;
 
 @Slf4j
 @Getter
 @Configuration
+@EnableJpaRepositories(basePackages = "stirling.software.enterprise.security.database.repository")
+@EntityScan({"stirling.software.enterprise.security.model"})
 public class DatabaseConfig {
 
     public final String DATASOURCE_DEFAULT_URL;

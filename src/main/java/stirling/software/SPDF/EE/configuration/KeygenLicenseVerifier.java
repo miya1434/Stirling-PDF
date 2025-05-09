@@ -1,4 +1,4 @@
-package stirling.software.enterprise.configuration;
+package stirling.software.SPDF.EE.configuration;
 
 import java.net.URI;
 import java.net.http.HttpClient;
@@ -19,15 +19,15 @@ import com.posthog.java.shaded.org.json.JSONObject;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
-import stirling.software.common.util.GeneralUtils;
 import stirling.software.common.model.ApplicationProperties;
+import stirling.software.common.util.GeneralUtils;
 
 @Service
 @Slf4j
 @RequiredArgsConstructor
 public class KeygenLicenseVerifier {
 
-    enum License {
+    public enum License {
         NORMAL,
         PRO,
         ENTERPRISE

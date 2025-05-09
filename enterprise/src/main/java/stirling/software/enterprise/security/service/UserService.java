@@ -27,11 +27,12 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import stirling.software.common.model.ApplicationProperties;
 import stirling.software.common.model.exception.UnsupportedProviderException;
+import stirling.software.common.service.UserServiceInterface;
 import stirling.software.enterprise.security.database.repository.AuthorityRepository;
 import stirling.software.enterprise.security.database.repository.UserRepository;
 import stirling.software.enterprise.security.model.AuthenticationType;
 import stirling.software.enterprise.security.model.Authority;
-import stirling.software.enterprise.security.model.Role;
+import stirling.software.common.model.enumeration.Role;
 import stirling.software.enterprise.security.model.User;
 import stirling.software.enterprise.security.saml2.CustomSaml2AuthenticatedPrincipal;
 import stirling.software.enterprise.security.session.SessionPersistentRegistry;
@@ -39,7 +40,7 @@ import stirling.software.enterprise.security.session.SessionPersistentRegistry;
 @Service
 @Slf4j
 @RequiredArgsConstructor
-public class UserService implements UserServiceEnterpriseInterface {
+public class UserService implements UserServiceInterface {
 
     private final UserRepository userRepository;
 

@@ -35,8 +35,8 @@ import stirling.software.SPDF.SPDFApplication;
 import stirling.software.SPDF.model.PipelineConfig;
 import stirling.software.SPDF.model.PipelineOperation;
 import stirling.software.SPDF.model.PipelineResult;
-import stirling.software.enterprise.security.model.Role;
-import stirling.software.enterprise.security.service.UserServiceEnterpriseInterface;
+import stirling.software.common.model.enumeration.Role;
+import stirling.software.common.service.UserServiceInterface;
 
 @Service
 @Slf4j
@@ -44,13 +44,13 @@ public class PipelineProcessor {
 
     private final ApiDocService apiDocService;
 
-    private final UserServiceEnterpriseInterface userService;
+    private final UserServiceInterface userService;
 
     private final ServletContext servletContext;
 
     public PipelineProcessor(
             ApiDocService apiDocService,
-            @Autowired(required = false) UserServiceEnterpriseInterface userService,
+            @Autowired(required = false) UserServiceInterface userService,
             ServletContext servletContext) {
         this.apiDocService = apiDocService;
         this.userService = userService;

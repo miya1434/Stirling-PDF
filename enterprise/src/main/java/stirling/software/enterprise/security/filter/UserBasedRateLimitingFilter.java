@@ -1,4 +1,4 @@
-package stirling.software.enterprise.security;
+package stirling.software.enterprise.security.filter;
 
 import io.github.bucket4j.Bandwidth;
 import io.github.bucket4j.Bucket;
@@ -20,7 +20,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
-import stirling.software.enterprise.security.model.Role;
+import stirling.software.common.model.enumeration.Role;
 
 @Component
 public class UserBasedRateLimitingFilter extends OncePerRequestFilter {

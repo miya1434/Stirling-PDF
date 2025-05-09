@@ -1,4 +1,4 @@
-package stirling.software.enterprise.security;
+package stirling.software.enterprise.security.filter;
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;

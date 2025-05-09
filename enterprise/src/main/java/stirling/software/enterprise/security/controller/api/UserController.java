@@ -31,7 +31,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 import stirling.software.enterprise.security.model.AuthenticationType;
-import stirling.software.enterprise.security.model.Role;
+import stirling.software.common.model.enumeration.Role;
 import stirling.software.enterprise.security.model.User;
 import stirling.software.common.model.ApplicationProperties;
 import stirling.software.common.model.exception.UnsupportedProviderException;

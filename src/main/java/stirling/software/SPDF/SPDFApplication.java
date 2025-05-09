@@ -35,7 +35,12 @@ import stirling.software.common.util.UrlUtils;
 @Slf4j
 @EnableScheduling
 @SpringBootApplication(
-        scanBasePackages = {"stirling.software.common", "stirling.software.SPDF"},
+        scanBasePackages = {
+            "stirling.software.SPDF",
+            "stirling.software.common",
+            "stirling.software.enterprise",
+            "stirling.software.enterprise.configuration"
+        },
         exclude = {
             DataSourceAutoConfiguration.class,
             DataSourceTransactionManagerAutoConfiguration.class
@@ -147,8 +152,10 @@ public class SPDFApplication {
     public void init() {
         String baseUrl = appConfig.getBaseUrl();
         String contextPath = appConfig.getContextPath();
+        String serverPort = appConfig.getServerPort();
         baseUrlStatic = baseUrl;
         contextPathStatic = contextPath;
+        serverPortStatic = serverPort;
         String url = baseUrl + ":" + getStaticPort() + contextPath;
 
         if (webBrowser != null

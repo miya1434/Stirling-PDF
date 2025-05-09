@@ -8,7 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 import stirling.software.common.model.ApplicationProperties;
 import stirling.software.common.model.exception.UnsupportedProviderException;
-import stirling.software.enterprise.security.model.Role;
+import stirling.software.common.model.enumeration.Role;
 import stirling.software.enterprise.security.service.DatabaseServiceInterface;
 import stirling.software.enterprise.security.service.UserService;
 

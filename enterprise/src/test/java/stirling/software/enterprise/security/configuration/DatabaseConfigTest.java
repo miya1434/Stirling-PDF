@@ -1,4 +1,4 @@
-package stirling.software.common.configuration;
+package stirling.software.enterprise.security.configuration;
 
 import javax.sql.DataSource;
 import org.junit.jupiter.api.BeforeEach;

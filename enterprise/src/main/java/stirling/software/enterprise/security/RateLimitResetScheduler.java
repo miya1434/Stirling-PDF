@@ -3,6 +3,7 @@ package stirling.software.enterprise.security;
 import lombok.RequiredArgsConstructor;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
+import stirling.software.enterprise.security.filter.IPRateLimitingFilter;
 
 @Component
 @RequiredArgsConstructor

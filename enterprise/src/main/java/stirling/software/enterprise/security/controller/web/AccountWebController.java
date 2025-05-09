@@ -30,7 +30,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
 
 import stirling.software.enterprise.security.model.Authority;
-import stirling.software.enterprise.security.model.Role;
+import stirling.software.common.model.enumeration.Role;
 import stirling.software.enterprise.security.model.SessionEntity;
 import stirling.software.enterprise.security.model.User;
 import stirling.software.enterprise.security.database.repository.UserRepository;
