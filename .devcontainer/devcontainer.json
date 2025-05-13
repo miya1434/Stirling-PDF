@@ -102,8 +102,8 @@
                 "java.eclipse.downloadSources": true,
                 "java.import.gradle.wrapper.enabled": true,
                 "spring.initializr.defaultLanguage": "Java",
-                "spring.initializr.defaultGroupId": "stirling.software.SPDF",
-                "spring.initializr.defaultArtifactId": "SPDF"
+                "spring.initializr.defaultGroupId": "stirling.software.spdf",
+                "spring.initializr.defaultArtifactId": "spdf"
             },
             "extensions": [
                 "elagil.pre-commit-helper", // Support for pre-commit hooks to enforce code quality

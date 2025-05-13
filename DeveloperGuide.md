@@ -76,7 +76,7 @@ Stirling-PDF/
 │   │   ├── java/
 │   │   │   └── stirling/
 │   │   │       └── software/
-│   │   │           └── SPDF/
+│   │   │           └── spdf/
 │   │   │               ├── config/
 │   │   │               ├── controller/
 │   │   │               ├── model/
@@ -93,7 +93,7 @@ Stirling-PDF/
 │       └── java/
 │           └── stirling/
 │               └── software/
-│                   └── SPDF/
+│                   └── spdf/
 ├── build.gradle           # Gradle build configuration
 ├── Dockerfile             # Main Dockerfile
 ├── Dockerfile.ultra-lite  # Dockerfile for ultra-lite version
@@ -384,12 +384,12 @@ This would generate n entries of tr for each person in exampleData
 ### Adding a New Feature to the Backend (API)
 
 1. **Create a New Controller:**
-   - Create a new Java class in the `src/main/java/stirling/software/SPDF/controller/api` directory.
+   - Create a new Java class in the `src/main/java/stirling/software/spdf/controller/api` directory.
    - Annotate the class with `@RestController` and `@RequestMapping` to define the API endpoint.
    - Ensure to add API documentation annotations like `@Tag(name = "General", description = "General APIs")` and `@Operation(summary = "Crops a PDF document", description = "This operation takes an input PDF file and crops it according to the given coordinates. Input:PDF Output:PDF Type:SISO")`.
 
    ```java
-   package stirling.software.SPDF.controller.api;
+   package stirling.software.spdf.controller.api;
 
    import org.springframework.web.bind.annotation.GetMapping;
    import org.springframework.web.bind.annotation.RequestMapping;
@@ -411,11 +411,11 @@ This would generate n entries of tr for each person in exampleData
    ```
 
 2. **Define the Service Layer:** (Not required but often useful)
-   - Create a new service class in the `src/main/java/stirling/software/SPDF/service` directory.
+   - Create a new service class in the `src/main/java/stirling/software/spdf/service` directory.
    - Implement the business logic for the new feature.
 
    ```java
-   package stirling.software.SPDF.service;
+   package stirling.software.spdf.service;
 
    import org.springframework.stereotype.Service;
 
@@ -434,13 +434,13 @@ This would generate n entries of tr for each person in exampleData
 - Autowire the service class in the controller and use it to handle the API request.
 
   ```java
-  package stirling.software.SPDF.controller.api;
+  package stirling.software.spdf.controller.api;
 
   import org.springframework.beans.factory.annotation.Autowired;
   import org.springframework.web.bind.annotation.GetMapping;
   import org.springframework.web.bind.annotation.RequestMapping;
   import org.springframework.web.bind.annotation.RestController;
-  import stirling.software.SPDF.service.NewFeatureService;
+  import stirling.software.spdf.service.NewFeatureService;
   import io.swagger.v3.oas.annotations.Operation;
   import io.swagger.v3.oas.annotations.tags.Tag;
 
@@ -507,18 +507,18 @@ This would generate n entries of tr for each person in exampleData
    ```
 
 2. **Create a New Controller for the UI:**
-   - Create a new Java class in the `src/main/java/stirling/software/SPDF/controller/ui` directory.
+   - Create a new Java class in the `src/main/java/stirling/software/spdf/controller/ui` directory.
    - Annotate the class with `@Controller` and `@RequestMapping` to define the UI endpoint.
 
    ```java
-   package stirling.software.SPDF.controller.ui;
+   package stirling.software.spdf.controller.ui;
 
    import org.springframework.beans.factory.annotation.Autowired;
    import org.springframework.stereotype.Controller;
    import org.springframework.ui.Model;
    import org.springframework.web.bind.annotation.GetMapping;
    import org.springframework.web.bind.annotation.RequestMapping;
-   import stirling.software.SPDF.service.NewFeatureService;
+   import stirling.software.spdf.service.NewFeatureService;
 
    @Controller
    @RequestMapping("/new-feature")

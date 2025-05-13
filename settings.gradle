@@ -4,8 +4,4 @@ plugins {
 }
 rootProject.name = 'Stirling-PDF'
 
-include 'stirling-pdf', 'common'
-
-if (System.getenv('ADDITIONAL_FEATURES') == 'true') {
-    include 'proprietary'
-}
+include 'stirling-pdf', 'common', 'proprietary'

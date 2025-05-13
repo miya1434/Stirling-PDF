@@ -8,8 +8,8 @@ Front End:
   - changed-files:
     - any-glob-to-any-file: 'src/main/resources/templates/**/*'
     - any-glob-to-any-file: 'src/main/resources/static/**/*'
-    - any-glob-to-any-file: 'src/main/java/stirling/software/SPDF/controller/web/**'
-    - any-glob-to-any-file: 'src/main/java/stirling/software/SPDF/UI/**/*'
+    - any-glob-to-any-file: 'src/main/java/stirling/software/spdf/controller/web/**'
+    - any-glob-to-any-file: 'src/main/java/stirling/software/spdf/UI/**/*'
 
 Java:
   - changed-files:
@@ -17,8 +17,8 @@ Java:
 
 Back End:
   - changed-files:
-    - any-glob-to-any-file: 'src/main/java/stirling/software/SPDF/config/**/*'
-    - any-glob-to-any-file: 'src/main/java/stirling/software/SPDF/controller/**/*'
+    - any-glob-to-any-file: 'src/main/java/stirling/software/spdf/config/**/*'
+    - any-glob-to-any-file: 'src/main/java/stirling/software/spdf/controller/**/*'
     - any-glob-to-any-file: 'src/main/resources/settings.yml.template'
     - any-glob-to-any-file: 'src/main/resources/application.properties'
     - any-glob-to-any-file: 'src/main/resources/banner.txt'
@@ -27,34 +27,39 @@ Back End:
 
 Security:
   - changed-files:
-    - any-glob-to-any-file: 'src/main/java/stirling/software/SPDF/config/interfaces/DatabaseInterface.java'
-    - any-glob-to-any-file: 'src/main/java/stirling/software/SPDF/config/security/**/*'
-    - any-glob-to-any-file: 'src/main/java/stirling/software/SPDF/controller/api/DatabaseController.java'
-    - any-glob-to-any-file: 'src/main/java/stirling/software/SPDF/controller/api/EmailController.java'
-    - any-glob-to-any-file: 'src/main/java/stirling/software/SPDF/controller/api/H2SQLController.java'
-    - any-glob-to-any-file: 'src/main/java/stirling/software/SPDF/controller/web/AccountWebController.java'
-    - any-glob-to-any-file: 'src/main/java/stirling/software/SPDF/controller/web/DatabaseWebController.java'
-    - any-glob-to-any-file: 'src/main/java/stirling/software/SPDF/controller/api/UserController.java'
-    - any-glob-to-any-file: 'src/main/java/stirling/software/SPDF/model/api/Email.java'
-    - any-glob-to-any-file: 'src/main/java/stirling/software/SPDF/model/exception/BackupNotFoundException.java'
-    - any-glob-to-any-file: 'src/main/java/stirling/software/SPDF/model/exception/NoProviderFoundExceptionjava'
-    - any-glob-to-any-file: 'src/main/java/stirling/software/SPDF/model/provider/**/*'
-    - any-glob-to-any-file: 'src/main/java/stirling/software/SPDF/model/AuthenticationType.java'
-    - any-glob-to-any-file: 'src/main/java/stirling/software/SPDF/model/ApiKeyAuthenticationToken.java'
-    - any-glob-to-any-file: 'src/main/java/stirling/software/SPDF/model/AttemptCounter.java'
-    - any-glob-to-any-file: 'src/main/java/stirling/software/SPDF/model/Authority.java'
-    - any-glob-to-any-file: 'src/main/java/stirling/software/SPDF/model/PersistentLogin.java'
-    - any-glob-to-any-file: 'src/main/java/stirling/software/SPDF/model/SessionEntity.java'
+#        todo: fix these
+    - any-glob-to-any-file: 'src/main/java/stirling/software/spdf/config/interfaces/DatabaseInterface.java'
+    - any-glob-to-any-file: 'src/main/java/stirling/software/spdf/config/security/**/*'
+    - any-glob-to-any-file: 'src/main/java/stirling/software/spdf/controller/api/DatabaseController.java'
+    - any-glob-to-any-file: 'src/main/java/stirling/software/spdf/controller/api/EmailController.java'
+    - any-glob-to-any-file: 'src/main/java/stirling/software/spdf/controller/api/H2SQLController.java'
+    - any-glob-to-any-file: 'src/main/java/stirling/software/spdf/controller/web/AccountWebController.java'
+    - any-glob-to-any-file: 'src/main/java/stirling/software/spdf/controller/web/DatabaseWebController.java'
+    - any-glob-to-any-file: 'src/main/java/stirling/software/spdf/controller/api/UserController.java'
+    - any-glob-to-any-file: 'src/main/java/stirling/software/spdf/model/api/Email.java'
+    - any-glob-to-any-file: 'src/main/java/stirling/software/spdf/model/exception/BackupNotFoundException.java'
+    - any-glob-to-any-file: 'src/main/java/stirling/software/spdf/model/exception/NoProviderFoundExceptionjava'
+    - any-glob-to-any-file: 'src/main/java/stirling/software/spdf/model/provider/**/*'
+    - any-glob-to-any-file: 'src/main/java/stirling/software/spdf/model/AuthenticationType.java'
+    - any-glob-to-any-file: 'src/main/java/stirling/software/spdf/model/ApiKeyAuthenticationToken.java'
+    - any-glob-to-any-file: 'src/main/java/stirling/software/spdf/model/AttemptCounter.java'
+    - any-glob-to-any-file: 'src/main/java/stirling/software/spdf/model/Authority.java'
+    - any-glob-to-any-file: 'src/main/java/stirling/software/spdf/model/PersistentLogin.java'
+    - any-glob-to-any-file: 'src/main/java/stirling/software/spdf/model/SessionEntity.java'
+    - any-glob-to-any-file: 'src/main/java/stirling/software/spdf/config/security/**/*'
+    - any-glob-to-any-file: 'src/main/java/stirling/software/spdf/model/provider/**/*'
+    - any-glob-to-any-file: 'src/main/java/stirling/software/spdf/model/AuthenticationType.java'
+    - any-glob-to-any-file: 'src/main/java/stirling/software/spdf/model/BackupNotFoundException.java'
     - any-glob-to-any-file: 'scripts/download-security-jar.sh'
     - any-glob-to-any-file: '.github/workflows/dependency-review.yml'
     - any-glob-to-any-file: '.github/workflows/scorecards.yml'
 
 API:
   - changed-files:
-    - any-glob-to-any-file: 'src/main/java/stirling/software/SPDF/config/OpenApiConfig.java'
-    - any-glob-to-any-file: 'src/main/java/stirling/software/SPDF/controller/web/MetricsController.java'
-    - any-glob-to-any-file: 'src/main/java/stirling/software/SPDF/controller/api/**/*'
-    - any-glob-to-any-file: 'src/main/java/stirling/software/SPDF/model/api/**/*'
+    - any-glob-to-any-file: 'src/main/java/stirling/software/spdf/config/OpenApiConfig.java'
+    - any-glob-to-any-file: 'src/main/java/stirling/software/spdf/controller/web/MetricsController.java'
+    - any-glob-to-any-file: 'src/main/java/stirling/software/spdf/controller/api/**/*'
+    - any-glob-to-any-file: 'src/main/java/stirling/software/spdf/model/api/**/*'
     - any-glob-to-any-file: 'scripts/png_to_webp.py'
     - any-glob-to-any-file: 'split_photos.py'
     - any-glob-to-any-file: '.github/workflows/swagger.yml'
