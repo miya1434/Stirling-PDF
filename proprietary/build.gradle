@@ -1,15 +1,10 @@
 plugins {
     id 'java-library'
-    id 'io.spring.dependency-management' version '1.1.7'
 }
 
-group = 'stirling.software'
-version = '0.46.0'
-
 repositories {
-    mavenCentral()
     maven { url = "https://build.shibboleth.net/maven/releases" }
-    maven { url = "https://maven.pkg.github.com/jcefmaven/jcefmaven" }
+//    maven { url = "https://maven.pkg.github.com/jcefmaven/jcefmaven" }
 }
 
 java {
@@ -19,7 +14,7 @@ java {
 sourceSets {
     main {
         java {
-            if (System.getenv("ADDITIONAL_FEATURES") == "false") {
+            if (System.getenv('ADDITIONAL_FEATURES') == 'false') {
                 exclude 'stirling/software/enterprise/security/UserAuthenticationFilter.java'
                 exclude 'stirling/software/enterprise/security/UserBasedRateLimitingFilter.java'
                 exclude 'stirling/software/enterprise/security/CustomAuthenticationSuccessHandler.java'
@@ -56,27 +51,14 @@ sourceSets {
     }
 }
 
-configurations.all {
-    exclude group: 'commons-logging', module: 'commons-logging'
-    exclude group: "org.springframework.boot", module: "spring-boot-starter-tomcat"
-}
-
-dependencyManagement {
-    imports {
-        mavenBom 'org.springframework.boot:spring-boot-dependencies:3.4.5'
-    }
-}
-
 dependencies {
     implementation project(':common')
 
     implementation 'org.springframework.boot:spring-boot-starter-jetty'
     implementation 'io.swagger.core.v3:swagger-core-jakarta:2.2.30'
-    implementation 'org.springframework:spring-webmvc:6.2.6'
     implementation 'com.posthog.java:posthog:1.2.0'
 
     implementation 'com.bucket4j:bucket4j_jdk17-core:8.14.0' // https://mvnrepository.com/artifact/com.bucket4j/bucket4j_jdk17
-    implementation 'io.github.pixee:java-security-toolkit:1.2.1'
     implementation 'org.bouncycastle:bcprov-jdk18on:1.80'
 
     if (System.getenv('ADDITIONAL_FEATURES') != 'false') {
@@ -111,6 +93,3 @@ dependencies {
     testRuntimeOnly 'org.mockito:mockito-inline:5.2.0'
 }
 
-test {
-    useJUnitPlatform()
-}
