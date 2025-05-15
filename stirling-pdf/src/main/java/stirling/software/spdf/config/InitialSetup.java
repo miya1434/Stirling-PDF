@@ -59,7 +59,7 @@ public class InitialSetup {
 
     public void initEnableCSRFSecurity() throws IOException {
         if (GeneralUtil.isVersionHigher(
-                "0.36.0", applicationProperties.getAutomaticallyGenerated().getAppVersion())) {
+                "0.46.0", applicationProperties.getAutomaticallyGenerated().getAppVersion())) {
             Boolean csrf = applicationProperties.getSecurity().getCsrfDisabled();
             if (!csrf) {
                 GeneralUtil.saveKeyToSettings("security.csrfDisabled", false);

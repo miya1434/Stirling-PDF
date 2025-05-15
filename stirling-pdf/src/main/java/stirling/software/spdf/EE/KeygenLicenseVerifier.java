@@ -1,4 +1,4 @@
-package stirling.software.spdf.EE.configuration;
+package stirling.software.spdf.EE;
 
 import java.net.URI;
 import java.net.http.HttpClient;

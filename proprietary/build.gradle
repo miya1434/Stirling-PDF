@@ -59,7 +59,6 @@ dependencies {
 
     implementation 'org.springframework.boot:spring-boot-starter-jetty'
     implementation 'io.swagger.core.v3:swagger-core-jakarta:2.2.30'
-    implementation 'com.posthog.java:posthog:1.2.0'
 
     implementation 'com.bucket4j:bucket4j_jdk17-core:8.14.0' // https://mvnrepository.com/artifact/com.bucket4j/bucket4j_jdk17
     implementation 'org.bouncycastle:bcprov-jdk18on:1.80'

@@ -30,7 +30,7 @@ import stirling.software.spdf.model.PipelineConfig;
 import stirling.software.spdf.model.PipelineOperation;
 import stirling.software.spdf.model.PipelineResult;
 import stirling.software.spdf.model.api.HandleDataRequest;
-import stirling.software.spdf.service.PostHogService;
+import stirling.software.common.service.PostHogService;
 import stirling.software.common.util.WebResponseUtils;
 
 @RestController

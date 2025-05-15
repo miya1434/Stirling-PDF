@@ -1,6 +1,6 @@
-package stirling.software.spdf.EE.configuration;
+package stirling.software.spdf.EE;
 
-import static stirling.software.spdf.EE.configuration.KeygenLicenseVerifier.License;
+import static stirling.software.spdf.EE.KeygenLicenseVerifier.License;
 
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;

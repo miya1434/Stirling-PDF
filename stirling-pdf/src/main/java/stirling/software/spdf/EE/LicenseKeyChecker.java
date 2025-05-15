@@ -1,4 +1,4 @@
-package stirling.software.spdf.EE.configuration;
+package stirling.software.spdf.EE;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 
 import lombok.extern.slf4j.Slf4j;
 
-import stirling.software.spdf.EE.configuration.KeygenLicenseVerifier.License;
+import stirling.software.spdf.EE.KeygenLicenseVerifier.License;
 import stirling.software.common.model.ApplicationProperties;
 import stirling.software.common.util.GeneralUtil;
 

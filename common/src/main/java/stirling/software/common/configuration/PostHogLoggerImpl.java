@@ -1,4 +1,4 @@
-package stirling.software.spdf.config;
+package stirling.software.common.configuration;
 
 import org.springframework.stereotype.Component;
 

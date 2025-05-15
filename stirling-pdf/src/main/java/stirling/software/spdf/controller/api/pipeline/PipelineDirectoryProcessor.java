@@ -36,7 +36,7 @@ import stirling.software.spdf.model.PipelineConfig;
 import stirling.software.spdf.model.PipelineOperation;
 import stirling.software.spdf.model.PipelineResult;
 import stirling.software.spdf.service.ApiDocService;
-import stirling.software.spdf.service.PostHogService;
+import stirling.software.common.service.PostHogService;
 import stirling.software.common.configuration.RuntimePathConfig;
 import stirling.software.common.util.FileMonitor;
 

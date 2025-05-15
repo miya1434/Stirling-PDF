@@ -25,7 +25,11 @@ public class WebMvcConfig implements WebMvcConfigurer {
         // Handler for external static resources
         registry.addResourceHandler("/**")
                 .addResourceLocations(
-                        "file:" + InstallationPathConfig.getStaticPath(), "classpath:/static/");
+                    "classpath:/stirling-pdf/src/main/resources/static/",
+                    "classpath:/stirling-pdf/static/",
+                    "classpath:/static/",
+                    "file:" + InstallationPathConfig.getStaticPath()
+                );
         // .setCachePeriod(0); // Optional: disable caching
     }
 }
