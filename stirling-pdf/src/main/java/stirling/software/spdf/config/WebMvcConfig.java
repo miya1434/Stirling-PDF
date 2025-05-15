@@ -27,11 +27,11 @@ public class WebMvcConfig implements WebMvcConfigurer {
                 .addResourceLocations(
                     "file:" + InstallationPathConfig.getStaticPath(),
                     "classpath:/static/",
-                    "classpath:/stirling-pdf/static/**",
-                    "classpath:BOOT-INF/**"
+                    "classpath:/stirling-pdf/"
+//                    "/stirling-pdf/static/"
                 );
-//        registry.addResourceHandler("/js/**").addResourceLocations("classpath:/static/js/");
-//        registry.addResourceHandler("/css/**").addResourceLocations("classpath:/static/css/");
+        registry.addResourceHandler("/js/**").addResourceLocations("classpath:/static/js/");
+        registry.addResourceHandler("/css/**").addResourceLocations("classpath:/static/css/");
         // .setCachePeriod(0); // Optional: disable caching
     }
 }
