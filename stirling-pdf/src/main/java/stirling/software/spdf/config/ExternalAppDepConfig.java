@@ -13,20 +13,21 @@ import jakarta.annotation.PostConstruct;
 import lombok.extern.slf4j.Slf4j;
 
 import stirling.software.common.configuration.RuntimePathConfig;
+import stirling.software.spdf.service.EndpointConfigurationService;
 
 @Configuration
 @Slf4j
 public class ExternalAppDepConfig {
 
-    private final EndpointConfiguration endpointConfiguration;
+    private final EndpointConfigurationService endpointConfigurationService;
 
     private final String weasyprintPath;
     private final String unoconvPath;
     private final Map<String, List<String>> commandToGroupMapping;
 
     public ExternalAppDepConfig(
-            EndpointConfiguration endpointConfiguration, RuntimePathConfig runtimePathConfig) {
-        this.endpointConfiguration = endpointConfiguration;
+            EndpointConfigurationService endpointConfigurationService, RuntimePathConfig runtimePathConfig) {
+        this.endpointConfigurationService = endpointConfigurationService;
         weasyprintPath = runtimePathConfig.getWeasyPrintPath();
         unoconvPath = runtimePathConfig.getUnoConvertPath();
 
@@ -62,7 +63,7 @@ public class ExternalAppDepConfig {
     }
 
     private List<String> getAffectedFeatures(String group) {
-        return endpointConfiguration.getEndpointsForGroup(group).stream()
+        return endpointConfigurationService.getEndpointsForGroup(group).stream()
                 .map(endpoint -> formatEndpointAsFeature(endpoint))
                 .toList();
     }
@@ -93,7 +94,7 @@ public class ExternalAppDepConfig {
             if (affectedGroups != null) {
                 for (String group : affectedGroups) {
                     List<String> affectedFeatures = getAffectedFeatures(group);
-                    endpointConfiguration.disableGroup(group);
+                    endpointConfigurationService.disableGroup(group);
                     log.warn(
                             "Missing dependency: {} - Disabling group: {} (Affected features: {})",
                             command,
@@ -120,8 +121,8 @@ public class ExternalAppDepConfig {
         if (!pythonAvailable) {
             List<String> pythonFeatures = getAffectedFeatures("Python");
             List<String> openCVFeatures = getAffectedFeatures("OpenCV");
-            endpointConfiguration.disableGroup("Python");
-            endpointConfiguration.disableGroup("OpenCV");
+            endpointConfigurationService.disableGroup("Python");
+            endpointConfigurationService.disableGroup("OpenCV");
             log.warn(
                     "Missing dependency: Python - Disabling Python features: {} and OpenCV features: {}",
                     String.join(", ", pythonFeatures),
@@ -139,20 +140,20 @@ public class ExternalAppDepConfig {
                 int exitCode = process.waitFor();
                 if (exitCode != 0) {
                     List<String> openCVFeatures = getAffectedFeatures("OpenCV");
-                    endpointConfiguration.disableGroup("OpenCV");
+                    endpointConfigurationService.disableGroup("OpenCV");
                     log.warn(
                             "OpenCV not available in Python - Disabling OpenCV features: {}",
                             String.join(", ", openCVFeatures));
                 }
             } catch (Exception e) {
                 List<String> openCVFeatures = getAffectedFeatures("OpenCV");
-                endpointConfiguration.disableGroup("OpenCV");
+                endpointConfigurationService.disableGroup("OpenCV");
                 log.warn(
                         "Error checking OpenCV: {} - Disabling OpenCV features: {}",
                         e.getMessage(),
                         String.join(", ", openCVFeatures));
             }
         }
-        endpointConfiguration.logDisabledEndpointsSummary();
+        endpointConfigurationService.logDisabledEndpointsSummary();
     }
 }

@@ -21,7 +21,7 @@ import stirling.software.common.configuration.AppConfig;
 import stirling.software.common.model.ApplicationProperties;
 import stirling.software.common.model.ApplicationProperties.Security.OAUTH2;
 import stirling.software.common.model.ApplicationProperties.Security.SAML2;
-import stirling.software.common.model.provider.KeycloakProvider;
+import stirling.software.common.model.oauth2.provider.KeycloakProvider;
 import stirling.software.common.util.UrlUtils;
 import stirling.software.proprietary.security.saml2.CertificateUtils;
 import stirling.software.proprietary.security.saml2.CustomSaml2AuthenticatedPrincipal;

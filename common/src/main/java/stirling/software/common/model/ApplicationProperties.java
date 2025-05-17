@@ -22,11 +22,11 @@ import org.springframework.core.io.FileSystemResource;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Component;
 import stirling.software.common.model.exception.UnsupportedProviderException;
-import stirling.software.common.model.provider.GitHubProvider;
-import stirling.software.common.model.provider.GoogleProvider;
-import stirling.software.common.model.provider.KeycloakProvider;
-import stirling.software.common.model.provider.Provider;
 import stirling.software.common.util.ValidationUtil;
+import stirling.software.common.model.oauth2.provider.GitHubProvider;
+import stirling.software.common.model.oauth2.provider.GoogleProvider;
+import stirling.software.common.model.oauth2.provider.KeycloakProvider;
+import stirling.software.common.model.oauth2.provider.Provider;
 
 @Data
 @Component

@@ -26,7 +26,7 @@ import org.springframework.stereotype.Service;
 import stirling.software.common.configuration.InstallationPathConfig;
 import stirling.software.common.model.ApplicationProperties;
 import stirling.software.common.model.FileInfo;
-import stirling.software.common.model.exception.BackupNotFoundException;
+import stirling.software.proprietary.security.model.exception.BackupNotFoundException;
 
 @Slf4j
 @Service

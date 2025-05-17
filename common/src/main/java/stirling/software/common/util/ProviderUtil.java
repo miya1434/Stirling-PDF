@@ -1,6 +1,6 @@
 package stirling.software.common.util;
 
-import stirling.software.common.model.provider.Provider;
+import stirling.software.common.model.oauth2.provider.Provider;
 import static stirling.software.common.util.ValidationUtil.isCollectionEmpty;
 import static stirling.software.common.util.ValidationUtil.isStringEmpty;
 

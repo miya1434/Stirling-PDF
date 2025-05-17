@@ -3,12 +3,10 @@ package stirling.software.common.util;
 public class RequestUriUtil {
 
     public static boolean isStaticResource(String requestURI) {
-
         return isStaticResource("", requestURI);
     }
 
     public static boolean isStaticResource(String contextPath, String requestURI) {
-
         return requestURI.startsWith(contextPath + "/css/")
                 || requestURI.startsWith(contextPath + "/fonts/")
                 || requestURI.startsWith(contextPath + "/js/")

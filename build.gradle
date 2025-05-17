@@ -42,9 +42,35 @@ bootJar {
     enabled = false
 }
 
+sourceSets {
+    main {
+        java {
+            if (System.getenv('ADDITIONAL_FEATURES') == 'false') {
+                exclude 'stirling/software/proprietary/security/**'
+            }
+
+            if (System.getenv('STIRLING_PDF_DESKTOP_UI') == 'false') {
+                exclude 'stirling/software/spdf/UI/impl/**'
+            }
+        }
+    }
+
+    test {
+        java {
+            if (System.getenv('DOCKER_ENABLE_SECURITY') == 'false') {
+                exclude 'stirling/software/proprietary/security/**'
+            }
+
+            if (System.getenv('STIRLING_PDF_DESKTOP_UI') == 'false') {
+                exclude 'stirling/software/spdf/UI/impl/**'
+            }
+        }
+    }
+}
+
 allprojects {
-    group = "stirling.software"
-    version = "0.46.1"
+    group = 'stirling.software'
+    version = '0.46.1'
 
     afterEvaluate {
         if (project == rootProject) return
@@ -61,8 +87,6 @@ subprojects {
     apply plugin: 'org.springframework.boot'
     apply plugin: 'io.spring.dependency-management'
 
-
-
     java {
         // 17 is lowest but we support and recommend 21
         sourceCompatibility = JavaVersion.VERSION_17
@@ -74,7 +98,7 @@ subprojects {
 
     configurations.configureEach {
         exclude group: 'commons-logging', module: 'commons-logging'
-        exclude group: "org.springframework.boot", module: "spring-boot-starter-tomcat"
+        exclude group: 'org.springframework.boot', module: 'spring-boot-starter-tomcat'
         // Exclude vulnerable BouncyCastle version used in tableau
         exclude group: 'org.bouncycastle', module: 'bcpkix-jdk15on'
         exclude group: 'org.bouncycastle', module: 'bcutil-jdk15on'
@@ -119,45 +143,6 @@ subprojects {
 licenseReport {
     renderers = [new JsonReportRenderer()]
     allowedLicensesFile = new File("$projectDir/allowed-licenses.json")
-}
-
-// todo: test if needed here
-sourceSets {
-    main {
-        java {
-            if (System.getenv("ADDITIONAL_FEATURES") == "false") {
-                exclude 'stirling/software/proprietary/security/controller/**'
-                exclude 'stirling/software/proprietary/security/model/ApiKeyAuthenticationToken.java'
-                exclude 'stirling/software/proprietary/security/model/AttemptCounter.java'
-                exclude 'stirling/software/proprietary/security/model/Authority.java'
-                exclude 'stirling/software/proprietary/security/model/BackupNotFoundException.java'
-                exclude 'stirling/software/proprietary/security/model/PersistentLogin.java'
-                exclude 'stirling/software/proprietary/security/model/SessionEntity.java'
-                exclude 'stirling/software/proprietary/security/model/User.java'
-                exclude 'stirling/software/proprietary/security/database/repository/**'
-            }
-
-            if (System.getenv("STIRLING_PDF_DESKTOP_UI") == "false") {
-                exclude "stirling/software/spdf/UI/impl/**"
-            }
-
-        }
-    }
-
-    test {
-        java {
-            if (System.getenv("DOCKER_ENABLE_SECURITY") == "false") {
-                exclude "stirling/software/spdf/config/security/**"
-                exclude "stirling/software/spdf/model/ApiKeyAuthenticationTokenTest.java"
-                exclude "stirling/software/spdf/controller/api/EmailControllerTest.java"
-                exclude "stirling/software/spdf/repository/**"
-            }
-
-            if (System.getenv("STIRLING_PDF_DESKTOP_UI") == "false") {
-                exclude "stirling/software/spdf/UI/impl/**"
-            }
-        }
-    }
 }
 
 openApi {
@@ -370,18 +355,18 @@ tasks.register('downloadTempJre') {
             def jreArchive = new File(tmpDir, 'jre.tar.gz')
             def jreDir = new File(tmpDir, 'jre')
 
-            println "🔽 Downloading JRE to $jreArchive..."
+            println "Downloading JRE to $jreArchive"
             jreArchive.withOutputStream { out ->
                 new URI(jreUrl).toURL().withInputStream { from -> out << from }
             }
 
-            println "📦 Extracting JRE to $jreDir..."
+            println "Extracting JRE to $jreDir"
             jreDir.mkdirs()
             providers.exec {
                 commandLine 'tar', '-xzf', jreArchive.absolutePath, '-C', jreDir.absolutePath, '--strip-components=1'
             }.result.get()
 
-            println "✅ JRE ready at: $jreDir"
+            println "JRE ready at: $jreDir"
             ext.tempJrePath = jreDir.absolutePath
             project.ext.tempJrePath = jreDir.absolutePath
         } catch (Exception e) {
