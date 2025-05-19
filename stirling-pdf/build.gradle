@@ -68,5 +68,48 @@ dependencies {
     // runtimeOnly "com.twelvemonkeys.imageio:imageio-thumbsdb:$imageioVersion"
     // runtimeOnly "com.twelvemonkeys.imageio:imageio-xwd:$imageioVersion"
 
-    developmentOnly "org.springframework.boot:spring-boot-devtools:$springBootVersion"
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
 }
+
+sourceSets {
+    main {
+        resources {
+            srcDirs += ['../configs']
+        }
+    }
+}
+
+jar {
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+
+    from {
+        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+
+    manifest {
+        attributes(
+            'Main-Class': 'stirling.software.spdf.SPDFApplication',
+            "Implementation-Title": "Stirling-PDF",
+            "Implementation-Version": project.version
+        )
+    }
+}
+
+shadowJar {
+    archiveClassifier.set('shadow')
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+
+    manifest {
+        attributes(
+            'Main-Class': 'stirling.software.spdf.SPDFApplication'
+        )
+    }
+    zip64 = true
+    mergeServiceFiles()
+}
+
+build.dependsOn shadowJar
+jar.dependsOn ':common:jar'
+shadowJar.dependsOn ':common:jar'
+jar.dependsOn ':proprietary:jar'
+shadowJar.dependsOn ':proprietary:jar'

@@ -40,10 +40,6 @@ import stirling.software.common.util.UrlUtils;
             "stirling.software.common",
             "stirling.software.proprietary",
             "stirling.software.proprietary.configuration"
-        },
-        exclude = {
-            DataSourceAutoConfiguration.class,
-            DataSourceTransactionManagerAutoConfiguration.class
         })
 public class SPDFApplication {
 

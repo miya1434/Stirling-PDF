@@ -200,11 +200,11 @@ jobs:
         run: |
           # Set security settings based on flags
           if [ "${{ needs.check-comment.outputs.enable_security }}" == "true" ]; then
-            DOCKER_SECURITY="true"
+            ADDITIONAL_FEATURES="true"
             LOGIN_SECURITY="true"
             SECURITY_STATUS="🔒 Security Enabled"
           else
-            DOCKER_SECURITY="false"
+            ADDITIONAL_FEATURES="false"
             LOGIN_SECURITY="false"
             SECURITY_STATUS="Security Disabled"
           fi
@@ -223,7 +223,7 @@ jobs:
                 - /stirling/PR-${{ needs.check-comment.outputs.pr_number }}/config:/configs:rw
                 - /stirling/PR-${{ needs.check-comment.outputs.pr_number }}/logs:/logs:rw
               environment:
-                ADDITIONAL_FEATURES: "${DOCKER_SECURITY}"
+                ADDITIONAL_FEATURES: "${ADDITIONAL_FEATURES}"
                 SECURITY_ENABLELOGIN: "${LOGIN_SECURITY}"
                 SYSTEM_DEFAULTLOCALE: en-GB
                 UI_APPNAME: "Stirling-PDF PR#${{ needs.check-comment.outputs.pr_number }}"

@@ -57,7 +57,7 @@ sourceSets {
 
     test {
         java {
-            if (System.getenv('DOCKER_ENABLE_SECURITY') == 'false') {
+            if (System.getenv('ADDITIONAL_FEATURES') == 'false') {
                 exclude 'stirling/software/proprietary/security/**'
             }
 
@@ -167,7 +167,7 @@ jpackage {
     appVersion = project.version
     vendor = "Stirling PDF Inc"
     appDescription = "Stirling PDF - Your Local PDF Editor"
-    icon = "src/main/resources/static/favicon.ico"
+    icon = "stirling-pdf/src/main/resources/static/favicon.ico"
     verbose = true
 //    mainClass = "org.springframework.boot.loader.launch.JarLauncher"
 
@@ -208,7 +208,7 @@ jpackage {
     // MacOS-specific configuration
     mac {
         appVersion = getMacVersion(project.version.toString())
-        icon = "src/main/resources/static/favicon.icns"
+        icon = "stirling-pdf/src/main/resources/static/favicon.icns"
         type = "dmg"
         macPackageIdentifier = "Stirling PDF"
         macPackageName = "Stirling PDF"
@@ -230,7 +230,7 @@ jpackage {
     // Linux-specific configuration
     linux {
         appVersion = project.version
-        icon = "src/main/resources/static/favicon.png"
+        icon = "stirling-pdf/src/main/resources/static/favicon.png"
         type = "deb" // Can also use "rpm" for Red Hat-based systems
 
         // Debian package configuration
@@ -307,7 +307,7 @@ tasks.register('jpackageMacX64') {
                 '--main-class', 'org.springframework.boot.loader.launch.JarLauncher',
                 '--runtime-image', file(jrePath + "/zulu-17.jre/Contents/Home"),
                 '--dest', 'build/jpackage/x86_64',
-                '--icon', 'src/main/resources/static/favicon.icns',
+                '--icon', 'stirling-pdf/src/main/resources/static/favicon.icns',
                 '--app-version', getMacVersion(project.version.toString()),
                 '--mac-package-name', 'Stirling PDF (x86_64)',
                 '--mac-package-identifier', 'Stirling PDF (x86_64)',
@@ -392,7 +392,7 @@ tasks.register('cleanTempJre') {
 }
 
 launch4j {
-    icon = "${projectDir}/src/main/resources/static/favicon.ico"
+    icon = "${projectDir}/stirling-pdf/src/main/resources/static/favicon.ico"
 
     outfile="Stirling-PDF.exe"
 
@@ -443,9 +443,9 @@ sonar {
         property "sonar.projectKey", "Stirling-Tools_Stirling-PDF"
         property "sonar.organization", "stirling-tools"
 
-        property "sonar.exclusions", "**/build-wrapper-dump.json, src/main/java/org/apache/**, src/main/resources/static/pdfjs/**, src/main/resources/static/pdfjs-legacy/**, src/main/resources/static/js/thirdParty/**"
-        property "sonar.coverage.exclusions", "src/main/java/org/apache/**, src/main/resources/static/pdfjs/**, src/main/resources/static/pdfjs-legacy/**, src/main/resources/static/js/thirdParty/**"
-        property "sonar.cpd.exclusions", "src/main/java/org/apache/**, src/main/resources/static/pdfjs/**, src/main/resources/static/pdfjs-legacy/**, src/main/resources/static/js/thirdParty/**"
+        property "sonar.exclusions", "**/build-wrapper-dump.json, **/src/main/java/org/apache/**, **/src/main/resources/static/pdfjs/**, **/src/main/resources/static/pdfjs-legacy/**, **/src/main/resources/static/js/thirdParty/**"
+        property "sonar.coverage.exclusions", "**/src/main/java/org/apache/**, **/src/main/resources/static/pdfjs/**, **/src/main/resources/static/pdfjs-legacy/**, **/src/main/resources/static/js/thirdParty/**"
+        property "sonar.cpd.exclusions", "**/src/main/java/org/apache/**, **/src/main/resources/static/pdfjs/**, **/src/main/resources/static/pdfjs-legacy/**, **/src/main/resources/static/js/thirdParty/**"
     }
 }
 

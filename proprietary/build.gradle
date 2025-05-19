@@ -29,7 +29,7 @@ sourceSets {
 
         test {
             java {
-                if (System.getenv('DOCKER_ENABLE_SECURITY') == 'false') {
+                if (System.getenv('ADDITIONAL_FEATURES') == 'false') {
                     exclude 'stirling/software/proprietary/security/**'
                 }
 

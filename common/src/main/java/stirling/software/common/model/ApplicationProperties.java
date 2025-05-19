@@ -1,5 +1,7 @@
 package stirling.software.common.model;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
@@ -14,25 +16,62 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
+import org.springframework.core.env.ConfigurableEnvironment;
+import org.springframework.core.env.PropertySource;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.core.io.Resource;
+import org.springframework.core.io.support.EncodedResource;
 import org.springframework.stereotype.Component;
+import stirling.software.common.configuration.InstallationPathConfig;
+import stirling.software.common.configuration.YamlPropertySourceFactory;
 import stirling.software.common.model.exception.UnsupportedProviderException;
 import stirling.software.common.util.ValidationUtil;
 import stirling.software.common.model.oauth2.provider.GitHubProvider;
 import stirling.software.common.model.oauth2.provider.GoogleProvider;
 import stirling.software.common.model.oauth2.provider.KeycloakProvider;
 import stirling.software.common.model.oauth2.provider.Provider;
+import static stirling.software.common.util.ValidationUtil.isCollectionEmpty;
+import static stirling.software.common.util.ValidationUtil.isStringEmpty;
 
-@Data
-@Component
-@Order(Ordered.HIGHEST_PRECEDENCE)
+@Configuration
 @ConfigurationProperties(prefix = "")
+@Data
+@Order(Ordered.HIGHEST_PRECEDENCE)
+@Slf4j
 public class ApplicationProperties {
+
+    @Bean
+    public PropertySource<?> dynamicYamlPropertySource(ConfigurableEnvironment environment)
+        throws IOException {
+        String configPath = InstallationPathConfig.getSettingsPath();
+        log.info("Attempting to load settings from: " + configPath);
+
+        File file = new File(configPath);
+        if (!file.exists()) {
+            log.error("Warning: Settings file does not exist at: " + configPath);
+        }
+
+        Resource resource = new FileSystemResource(configPath);
+        if (!resource.exists()) {
+            throw new FileNotFoundException("Settings file not found at: " + configPath);
+        }
+
+        EncodedResource encodedResource = new EncodedResource(resource);
+        PropertySource<?> propertySource =
+            new YamlPropertySourceFactory().createPropertySource(null, encodedResource);
+        environment.getPropertySources().addFirst(propertySource);
+
+        log.info("Loaded properties: " + propertySource.getSource());
+
+        return propertySource;
+    }
 
     private Legal legal = new Legal();
     private Security security = new Security();
@@ -99,19 +138,19 @@ public class ApplicationProperties {
 
         public boolean isUserPass() {
             return (loginMethod.equalsIgnoreCase(LoginMethods.NORMAL.toString())
-                    || loginMethod.equalsIgnoreCase(LoginMethods.ALL.toString()));
+                || loginMethod.equalsIgnoreCase(LoginMethods.ALL.toString()));
         }
 
         public boolean isOauth2Active() {
             return (oauth2 != null
-                    && oauth2.getEnabled()
-                    && !loginMethod.equalsIgnoreCase(LoginMethods.NORMAL.toString()));
+                && oauth2.getEnabled()
+                && !loginMethod.equalsIgnoreCase(LoginMethods.NORMAL.toString()));
         }
 
         public boolean isSaml2Active() {
             return (saml2 != null
-                    && saml2.getEnabled()
-                    && !loginMethod.equalsIgnoreCase(LoginMethods.NORMAL.toString()));
+                && saml2.getEnabled()
+                && !loginMethod.equalsIgnoreCase(LoginMethods.NORMAL.toString()));
         }
 
         @Data
@@ -140,7 +179,7 @@ public class ApplicationProperties {
             public InputStream getIdpMetadataUri() throws IOException {
                 if (idpMetadataUri.startsWith("classpath:")) {
                     return new ClassPathResource(idpMetadataUri.substring("classpath".length()))
-                            .getInputStream();
+                        .getInputStream();
                 }
                 try {
                     URI uri = new URI(idpMetadataUri);
@@ -195,7 +234,7 @@ public class ApplicationProperties {
 
             public void setScopes(String scopes) {
                 List<String> scopesList =
-                        Arrays.stream(scopes.split(",")).map(String::trim).toList();
+                    Arrays.stream(scopes.split(",")).map(String::trim).toList();
                 this.scopes.addAll(scopesList);
             }
 
@@ -208,11 +247,11 @@ public class ApplicationProperties {
             }
 
             public boolean isSettingsValid() {
-                return !ValidationUtil.isStringEmpty(this.getIssuer())
-                        && !ValidationUtil.isStringEmpty(this.getClientId())
-                        && !ValidationUtil.isStringEmpty(this.getClientSecret())
-                        && !ValidationUtil.isCollectionEmpty(this.getScopes())
-                        && !ValidationUtil.isStringEmpty(this.getUseAsUsername());
+                return !isStringEmpty(this.getIssuer())
+                    && !isStringEmpty(this.getClientId())
+                    && !isStringEmpty(this.getClientSecret())
+                    && !isCollectionEmpty(this.getScopes())
+                    && !isStringEmpty(this.getUseAsUsername());
             }
 
             @Data
@@ -227,11 +266,11 @@ public class ApplicationProperties {
                         case "github" -> getGithub();
                         case "keycloak" -> getKeycloak();
                         default ->
-                                throw new UnsupportedProviderException(
-                                        "Logout from the provider "
-                                                + registrationId
-                                                + " is not supported. "
-                                                + "Report it at https://github.com/Stirling-Tools/Stirling-PDF/issues");
+                            throw new UnsupportedProviderException(
+                                "Logout from the provider "
+                                    + registrationId
+                                    + " is not supported. "
+                                    + "Report it at https://github.com/Stirling-Tools/Stirling-PDF/issues");
                     };
                 }
             }
@@ -309,7 +348,7 @@ public class ApplicationProperties {
                       driverName='%s'
                     }
                     """
-                    .formatted(driverName);
+                .formatted(driverName);
         }
     }
 
@@ -326,14 +365,14 @@ public class ApplicationProperties {
 
         public String getHomeDescription() {
             return homeDescription != null && homeDescription.trim().length() > 0
-                    ? homeDescription
-                    : null;
+                ? homeDescription
+                : null;
         }
 
         public String getAppNameNavbar() {
             return appNameNavbar != null && appNameNavbar.trim().length() > 0
-                    ? appNameNavbar
-                    : null;
+                ? appNameNavbar
+                : null;
         }
     }
 
@@ -419,8 +458,8 @@ public class ApplicationProperties {
 
                 public String getProducer() {
                     return producer == null || producer.trim().isEmpty()
-                            ? "Stirling-PDF"
-                            : producer;
+                        ? "Stirling-PDF"
+                        : producer;
                 }
             }
 

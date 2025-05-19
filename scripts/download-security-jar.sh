@@ -1,6 +1,6 @@
 echo "Running Stirling PDF with ADDITIONAL_FEATURES=${ADDITIONAL_FEATURES} and VERSION_TAG=${VERSION_TAG}"
 # Check for ADDITIONAL_FEATURES and download the appropriate JAR if required
-if [ "$ADDITIONAL_FEATURES" = "true" ] && [ "$VERSION_TAG" != "alpha" ]; then
+if [ "ADDITIONAL_FEATURES" = "true" ] && [ "$VERSION_TAG" != "alpha" ]; then
     if [ ! -f app-security.jar ]; then
         echo "Trying to download from: https://files.stirlingpdf.com/v$VERSION_TAG/Stirling-PDF-with-login.jar"
         curl -L -o app-security.jar https://files.stirlingpdf.com/v$VERSION_TAG/Stirling-PDF-with-login.jar

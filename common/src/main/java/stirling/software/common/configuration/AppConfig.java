@@ -62,7 +62,7 @@ public class AppConfig {
 
     @Bean
     public boolean activeSecurity() {
-        return env.getProperty("DOCKER_SECURITY_ENABLED", Boolean.class, true);
+        return env.getProperty("ADDITIONAL_FEATURES", Boolean.class, true);
     }
 
     @Bean(name = "appName")

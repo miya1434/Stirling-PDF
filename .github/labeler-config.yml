@@ -29,22 +29,7 @@ Back End:
 
 Security:
   - changed-files:
-#        todo: fix these
-    - any-glob-to-any-file: 'src/main/java/stirling/software/spdf/config/security/**/*' # fixme
-        # todo: check if correct
     - any-glob-to-any-file: 'proprietary/src/main/java/stirling/software/proprietary/security/**/*'
-#    - any-glob-to-any-file: 'proprietary/src/main/java/stirling/software/proprietary/security/model/exception/**/*'
-#    - any-glob-to-any-file: 'proprietary/src/main/java/stirling/software/proprietary/security/controller/**/*'
-#    - any-glob-to-any-file: 'proprietary/src/main/java/stirling/software/proprietary/security/model/oauth2/provider/**/*'
-#    - any-glob-to-any-file: 'proprietary/src/main/java/stirling/software/proprietary/security/service/DatabaseServiceInterface.java'
-#    - any-glob-to-any-file: 'proprietary/src/main/java/stirling/software/proprietary/security/service/DatabaseService.java'
-#    - any-glob-to-any-file: 'proprietary/src/main/java/stirling/software/proprietary/security/model/api/Email.java'
-#    - any-glob-to-any-file: 'proprietary/src/main/java/stirling/software/proprietary/security/model/AuthenticationType.java'
-#    - any-glob-to-any-file: 'proprietary/src/main/java/stirling/software/proprietary/security/model/ApiKeyAuthenticationToken.java'
-#    - any-glob-to-any-file: 'proprietary/src/main/java/stirling/software/proprietary/security/model/AttemptCounter.java'
-#    - any-glob-to-any-file: 'proprietary/src/main/java/stirling/software/proprietary/security/model/Authority.java'
-#    - any-glob-to-any-file: 'proprietary/src/main/java/stirling/software/proprietary/security/model/PersistentLogin.java'
-#    - any-glob-to-any-file: 'proprietary/src/main/java/stirling/software/proprietary/security/model/SessionEntity.java'
     - any-glob-to-any-file: 'scripts/download-security-jar.sh'
     - any-glob-to-any-file: '.github/workflows/dependency-review.yml'
     - any-glob-to-any-file: '.github/workflows/scorecards.yml'
