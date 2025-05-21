@@ -40,12 +40,12 @@ jobs:
       - name: Build with Gradle and no spring security
         run: ./gradlew clean build
         env:
-          ADDITIONAL_FEATURES: false
+          WITHOUT_ENHANCED_FEATURES: true
 
       - name: Build with Gradle and with spring security
         run: ./gradlew clean build
         env:
-          ADDITIONAL_FEATURES: true
+          WITHOUT_ENHANCED_FEATURES: false
 
       - name: Upload Test Reports
         if: always()

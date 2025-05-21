@@ -33,7 +33,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-          ADDITIONAL_FEATURES: true
+          WITHOUT_ENHANCED_FEATURES: false
           STIRLING_PDF_DESKTOP_UI: true
         run: |
           ./gradlew clean build sonar \

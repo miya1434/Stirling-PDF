@@ -45,11 +45,15 @@ bootJar {
 sourceSets {
     main {
         java {
-            if (System.getenv('ADDITIONAL_FEATURES') == 'false') {
+            if (System.getenv('WITHOUT_ENHANCED_FEATURES') == 'false'
+                || (project.hasProperty('WITHOUT_ENHANCED_FEATURES')
+                && System.getProperty('WITHOUT_ENHANCED_FEATURES') == 'false')) {
                 exclude 'stirling/software/proprietary/security/**'
             }
 
-            if (System.getenv('STIRLING_PDF_DESKTOP_UI') == 'false') {
+            if (System.getenv('STIRLING_PDF_DESKTOP_UI') != 'false'
+                || (project.hasProperty('STIRLING_PDF_DESKTOP_UI')
+                && project.getProperty('STIRLING_PDF_DESKTOP_UI') != 'false')) {
                 exclude 'stirling/software/spdf/UI/impl/**'
             }
         }
@@ -57,11 +61,15 @@ sourceSets {
 
     test {
         java {
-            if (System.getenv('ADDITIONAL_FEATURES') == 'false') {
+            if (System.getenv('WITHOUT_ENHANCED_FEATURES') == 'false'
+                || (project.hasProperty('WITHOUT_ENHANCED_FEATURES')
+                && System.getProperty('WITHOUT_ENHANCED_FEATURES') == 'false')) {
                 exclude 'stirling/software/proprietary/security/**'
             }
 
-            if (System.getenv('STIRLING_PDF_DESKTOP_UI') == 'false') {
+            if (System.getenv('STIRLING_PDF_DESKTOP_UI') != 'false'
+                || (project.hasProperty('STIRLING_PDF_DESKTOP_UI')
+                && project.getProperty('STIRLING_PDF_DESKTOP_UI') != 'false')) {
                 exclude 'stirling/software/spdf/UI/impl/**'
             }
         }

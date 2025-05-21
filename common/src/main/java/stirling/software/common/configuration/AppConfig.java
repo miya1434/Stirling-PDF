@@ -61,8 +61,8 @@ public class AppConfig {
     }
 
     @Bean
-    public boolean activeSecurity() {
-        return env.getProperty("ADDITIONAL_FEATURES", Boolean.class, true);
+    public boolean disableSecurity() {
+        return env.getProperty("WITHOUT_ENHANCED_FEATURES", Boolean.class, false);
     }
 
     @Bean(name = "appName")
@@ -148,7 +148,7 @@ public class AppConfig {
         }
     }
 
-    @Bean(name = "missingActiveSecurity")
+    @Bean(name = "missingActiveSecurity") // todo: may not be needed anymore
     @ConditionalOnMissingClass("stirling.software.proprietary.security.SecurityConfiguration")
     public boolean missingActiveSecurity() {
         return true;

@@ -156,9 +156,9 @@ jobs:
       - name: Run Gradle Command
         run: |
           if [ "${{ needs.check-comment.outputs.enable_security }}" == "true" ]; then
-            export ADDITIONAL_FEATURES=true
+            export WITHOUT_ENHANCED_FEATURES=false
           else
-            export ADDITIONAL_FEATURES=false
+            export WITHOUT_ENHANCED_FEATURES=true
           fi
           ./gradlew clean build
         env:
@@ -200,11 +200,11 @@ jobs:
         run: |
           # Set security settings based on flags
           if [ "${{ needs.check-comment.outputs.enable_security }}" == "true" ]; then
-            ADDITIONAL_FEATURES="true"
+            WITHOUT_ENHANCED_FEATURES="false"
             LOGIN_SECURITY="true"
             SECURITY_STATUS="🔒 Security Enabled"
           else
-            ADDITIONAL_FEATURES="false"
+            WITHOUT_ENHANCED_FEATURES="true"
             LOGIN_SECURITY="false"
             SECURITY_STATUS="Security Disabled"
           fi
@@ -223,7 +223,7 @@ jobs:
                 - /stirling/PR-${{ needs.check-comment.outputs.pr_number }}/config:/configs:rw
                 - /stirling/PR-${{ needs.check-comment.outputs.pr_number }}/logs:/logs:rw
               environment:
-                ADDITIONAL_FEATURES: "${ADDITIONAL_FEATURES}"
+                WITHOUT_ENHANCED_FEATURES: "${WITHOUT_ENHANCED_FEATURES}"
                 SECURITY_ENABLELOGIN: "${LOGIN_SECURITY}"
                 SYSTEM_DEFAULTLOCALE: en-GB
                 UI_APPNAME: "Stirling-PDF PR#${{ needs.check-comment.outputs.pr_number }}"

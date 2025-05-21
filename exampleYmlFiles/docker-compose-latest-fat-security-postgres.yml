@@ -20,7 +20,7 @@ services:
       - ./stirling/latest/config:/configs:rw
       - ./stirling/latest/logs:/logs:rw
     environment:
-      ADDITIONAL_FEATURES: "true"
+      WITHOUT_ENHANCED_FEATURES: "false"
       SECURITY_ENABLELOGIN: "false"
       PUID: 1002
       PGID: 1002

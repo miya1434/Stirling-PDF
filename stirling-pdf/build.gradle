@@ -3,18 +3,22 @@ plugins {
 }
 
 repositories {
-    maven { url = "https://build.shibboleth.net/maven/releases" }
-    maven { url = "https://maven.pkg.github.com/jcefmaven/jcefmaven" }
+    maven { url = 'https://build.shibboleth.net/maven/releases' }
+    maven { url = 'https://maven.pkg.github.com/jcefmaven/jcefmaven' }
 }
 
 dependencies {
-    if (System.getenv("STIRLING_PDF_DESKTOP_UI") != "false") {
-        implementation "me.friwi:jcefmaven:132.3.1"
-        implementation "org.openjfx:javafx-controls:21"
-        implementation "org.openjfx:javafx-swing:21"
+    if (System.getenv('STIRLING_PDF_DESKTOP_UI') != 'false'
+        || (project.hasProperty('STIRLING_PDF_DESKTOP_UI')
+        && project.getProperty('STIRLING_PDF_DESKTOP_UI') != 'false')) {
+        implementation 'me.friwi:jcefmaven:132.3.1'
+        implementation 'org.openjfx:javafx-controls:21'
+        implementation 'org.openjfx:javafx-swing:21'
     }
 
-    if (System.getenv("ADDITIONAL_FEATURES") == "true") {
+    if (System.getenv('WITHOUT_ENHANCED_FEATURES') == 'false'
+        || (project.hasProperty('WITHOUT_ENHANCED_FEATURES')
+        && System.getProperty('WITHOUT_ENHANCED_FEATURES') == 'false')) {
         implementation project(':proprietary')
     }
 
@@ -34,9 +38,9 @@ dependencies {
     implementation "org.commonmark:commonmark-ext-gfm-tables:$commonmarkVersion"
 
     // General PDF dependencies
-    implementation ("org.apache.pdfbox:pdfbox:$pdfboxVersion")
+    implementation "org.apache.pdfbox:pdfbox:$pdfboxVersion"
     implementation "org.apache.pdfbox:preflight:$pdfboxVersion"
-    implementation ("org.apache.pdfbox:xmpbox:$pdfboxVersion")
+    implementation "org.apache.pdfbox:xmpbox:$pdfboxVersion"
 
     // https://mvnrepository.com/artifact/technology.tabula/tabula
     implementation ('technology.tabula:tabula:1.0.5')  {
@@ -45,7 +49,7 @@ dependencies {
         exclude group: 'com.google.code.gson', module: 'gson'
     }
     implementation 'org.apache.pdfbox:jbig2-imageio:3.0.4'
-    implementation ('com.opencsv:opencsv:5.11') // https://mvnrepository.com/artifact/com.opencsv/opencsv
+    implementation 'com.opencsv:opencsv:5.11' // https://mvnrepository.com/artifact/com.opencsv/opencsv
 
     // Batik
     implementation 'org.apache.xmlgraphics:batik-all:1.18'
@@ -81,6 +85,7 @@ sourceSets {
 
 jar {
     duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+    zip64 = true
 
     from {
         configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
@@ -89,27 +94,12 @@ jar {
     manifest {
         attributes(
             'Main-Class': 'stirling.software.spdf.SPDFApplication',
-            "Implementation-Title": "Stirling-PDF",
-            "Implementation-Version": project.version
+            'Implementation-Title': 'Stirling-PDF',
+            'Implementation-Version': project.version
         )
     }
 }
 
-shadowJar {
-    archiveClassifier.set('shadow')
-    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
 
-    manifest {
-        attributes(
-            'Main-Class': 'stirling.software.spdf.SPDFApplication'
-        )
-    }
-    zip64 = true
-    mergeServiceFiles()
-}
-
-build.dependsOn shadowJar
 jar.dependsOn ':common:jar'
-shadowJar.dependsOn ':common:jar'
 jar.dependsOn ':proprietary:jar'
-shadowJar.dependsOn ':proprietary:jar'

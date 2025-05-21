@@ -208,7 +208,7 @@ public class PostHogService {
 
         // New environment variables
         dockerMetrics.put("version_tag", System.getenv("VERSION_TAG"));
-        dockerMetrics.put("additional_features", System.getenv("ADDITIONAL_FEATURES"));
+        dockerMetrics.put("without_enhanced_features", System.getenv("WITHOUT_ENHANCED_FEATURES"));
         dockerMetrics.put("fat_docker", System.getenv("FAT_DOCKER"));
 
         return dockerMetrics;
