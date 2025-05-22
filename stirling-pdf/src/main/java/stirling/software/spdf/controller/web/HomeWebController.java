@@ -25,8 +25,8 @@ import lombok.extern.slf4j.Slf4j;
 import stirling.software.common.model.ApplicationProperties;
 import stirling.software.spdf.model.Dependency;
 
-@Controller
 @Slf4j
+@Controller
 @RequiredArgsConstructor
 public class HomeWebController {
 
@@ -49,7 +49,8 @@ public class HomeWebController {
             String json = new String(is.readAllBytes(), StandardCharsets.UTF_8);
             ObjectMapper mapper = new ObjectMapper();
             Map<String, List<Dependency>> data =
-                    mapper.readValue(json, new TypeReference<Map<String, List<Dependency>>>() {});
+                mapper.readValue(json, new TypeReference<>() {
+                });
             model.addAttribute("dependencies", data.get("dependencies"));
         } catch (IOException e) {
             log.error("exception", e);
@@ -77,9 +78,8 @@ public class HomeWebController {
     }
 
     @GetMapping("/home-legacy")
-    public String homeLegacy(Model model) {
-        model.addAttribute("currentPage", "home-legacy");
-        return "home-legacy";
+    public String redirectHomeLegacy() {
+        return "redirect:/";
     }
 
     @GetMapping(value = "/robots.txt", produces = MediaType.TEXT_PLAIN_VALUE)

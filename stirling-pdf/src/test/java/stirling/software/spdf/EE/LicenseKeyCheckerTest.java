@@ -1,7 +1,10 @@
-package stirling.software.SPDF.EE;
+package stirling.software.spdf.EE;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.verifyNoInteractions;
+import static org.mockito.Mockito.when;
+import static stirling.software.spdf.EE.KeygenLicenseVerifier.License;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -13,8 +16,7 @@ import org.junit.jupiter.api.io.TempDir;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import stirling.software.SPDF.EE.KeygenLicenseVerifier.License;
-import stirling.software.SPDF.model.ApplicationProperties;
+import stirling.software.common.model.ApplicationProperties;
 
 @ExtendWith(MockitoExtension.class)
 class LicenseKeyCheckerTest {

@@ -1,4 +1,4 @@
-package stirling.software.SPDF.config.security.mail;
+package stirling.software.proprietary.security.service;
 
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -13,7 +13,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 
-import stirling.software.SPDF.model.ApplicationProperties;
+import stirling.software.common.model.ApplicationProperties;
+import stirling.software.proprietary.security.configuration.MailConfig;
 
 class MailConfigTest {
 

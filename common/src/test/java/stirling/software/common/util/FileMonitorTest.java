@@ -1,4 +1,4 @@
-package stirling.software.SPDF.utils;
+package stirling.software.common.util;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -19,8 +19,7 @@ import org.junit.jupiter.api.io.TempDir;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
-
-import stirling.software.SPDF.config.RuntimePathConfig;
+import stirling.software.common.configuration.RuntimePathConfig;
 
 @ExtendWith(MockitoExtension.class)
 class FileMonitorTest {

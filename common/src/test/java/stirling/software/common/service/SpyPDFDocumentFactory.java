@@ -1,4 +1,4 @@
-package stirling.software.SPDF.service;
+package stirling.software.common.service;
 
 import org.apache.pdfbox.io.RandomAccessStreamCache.StreamCacheCreateFunction;
 

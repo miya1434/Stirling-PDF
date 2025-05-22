@@ -1,4 +1,4 @@
-package stirling.software.SPDF.utils;
+package stirling.software.common.util;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;

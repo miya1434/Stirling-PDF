@@ -1,4 +1,4 @@
-package stirling.software.SPDF.utils.propertyeditor;
+package stirling.software.common.util.propertyeditor;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;

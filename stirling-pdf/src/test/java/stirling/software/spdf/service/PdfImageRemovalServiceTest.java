@@ -1,4 +1,4 @@
-package stirling.software.SPDF.service;
+package stirling.software.spdf.service;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.mock;

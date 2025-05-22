@@ -1,4 +1,4 @@
-package stirling.software.SPDF.utils.misc;
+package stirling.software.common.util.misc;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -26,8 +26,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.web.multipart.MultipartFile;
-
-import stirling.software.SPDF.model.api.misc.ReplaceAndInvert;
+import stirling.software.common.model.api.misc.ReplaceAndInvert;
 
 class InvertFullColorStrategyTest {
 

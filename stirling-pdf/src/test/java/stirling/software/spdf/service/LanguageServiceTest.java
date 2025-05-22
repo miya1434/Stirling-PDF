@@ -1,4 +1,4 @@
-package stirling.software.SPDF.service;
+package stirling.software.spdf.service;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -17,8 +17,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 
-import stirling.software.SPDF.model.ApplicationProperties;
-import stirling.software.SPDF.model.ApplicationProperties.Ui;
+import stirling.software.common.model.ApplicationProperties;
+import stirling.software.common.model.ApplicationProperties.Ui;
 
 class LanguageServiceTest {
 

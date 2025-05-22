@@ -1,4 +1,4 @@
-package stirling.software.SPDF.service;
+package stirling.software.spdf.service;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;

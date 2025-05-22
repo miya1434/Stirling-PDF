@@ -1,4 +1,4 @@
-package stirling.software.SPDF.service;
+package stirling.software.spdf.service;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -17,8 +17,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 import org.mockito.MockedStatic;
 
-import stirling.software.SPDF.config.InstallationPathConfig;
-import stirling.software.SPDF.model.SignatureFile;
+import stirling.software.common.configuration.InstallationPathConfig;
+import stirling.software.spdf.model.SignatureFile;
 
 class SignatureServiceTest {
 

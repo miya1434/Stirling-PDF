@@ -1,9 +1,10 @@
-package stirling.software.SPDF.service;
+package stirling.software.spdf.service;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
+import static stirling.software.common.model.ApplicationProperties.Ui;
 
 import java.io.IOException;
 import java.util.Arrays;
@@ -14,8 +15,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.core.io.Resource;
 
-import stirling.software.SPDF.model.ApplicationProperties;
-import stirling.software.SPDF.model.ApplicationProperties.Ui;
+import stirling.software.common.model.ApplicationProperties;
 
 class LanguageServiceBasicTest {
 

@@ -1,12 +1,10 @@
-package stirling.software.SPDF.utils.misc;
-
-import static org.junit.jupiter.api.Assertions.assertArrayEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
+package stirling.software.common.util.misc;
 
 import org.junit.jupiter.api.Test;
-
-import stirling.software.SPDF.model.api.misc.HighContrastColorCombination;
-import stirling.software.SPDF.model.api.misc.ReplaceAndInvert;
+import stirling.software.common.model.api.misc.HighContrastColorCombination;
+import stirling.software.common.model.api.misc.ReplaceAndInvert;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 class HighContrastColorReplaceDeciderTest {
 

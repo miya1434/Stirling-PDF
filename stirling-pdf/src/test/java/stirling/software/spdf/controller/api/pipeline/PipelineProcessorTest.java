@@ -1,6 +1,7 @@
-package stirling.software.SPDF.controller.api.pipeline;
+package stirling.software.spdf.controller.api.pipeline;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.*;
 
@@ -19,9 +20,11 @@ import org.springframework.http.ResponseEntity;
 
 import jakarta.servlet.ServletContext;
 
-import stirling.software.SPDF.model.PipelineConfig;
-import stirling.software.SPDF.model.PipelineOperation;
-import stirling.software.SPDF.model.PipelineResult;
+import stirling.software.common.service.UserServiceInterface;
+import stirling.software.spdf.model.PipelineConfig;
+import stirling.software.spdf.model.PipelineOperation;
+import stirling.software.spdf.model.PipelineResult;
+import stirling.software.spdf.service.ApiDocService;
 
 @ExtendWith(MockitoExtension.class)
 class PipelineProcessorTest {
